@@ -25,3 +25,100 @@ body {
     text-wrap: balance;
   }
 }
+
+:where(.css-ccdg5a).ant-slider:hover .ant-slider-track {
+  background-color: #f0f2f5;
+}
+
+:where(.custom-slider).ant-slider-horizontal .ant-slider-track,
+:where(.custom-slider).ant-slider-horizontal .ant-slider-tracks {
+  height: 0px;
+}
+
+.range-bar .delete-button {
+  opacity: 0;
+}
+
+.range-bar:hover .delete-button {
+  opacity: 1;
+}
+
+.custom-slider .ant-slider-handle:hover {
+  background-color: #36b37e !important;
+  border-color: #36b37e !important;
+}
+
+.custom-slider .ant-slider-track:hover {
+  background-color: transparent !important;
+}
+
+:where(.custom-slider).ant-slider-horizontal .ant-slider-rail {
+  height: 8px !important;
+  background-color: #f0f2f5 !important;
+}
+
+:where(.custom-slider).ant-slider-horizontal .ant-slider-track,
+:where(.custom-slider).ant-slider-horizontal .ant-slider-tracks {
+  height: 6px;
+}
+
+:where(.custom-slider).ant-slider .ant-slider-track {
+  background-color: transparent;
+  border-radius: 2px;
+}
+
+:where(.css-dev-only-do-not-override-ccdg5a).ant-slider:hover
+  .ant-slider-track {
+  background-color: transparent !important;
+}
+
+:where(.custom-slider).ant-slider .ant-slider-handle::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #181818;
+  box-shadow: 0 0 0 2px #36b37e;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: inset-inline-start 0.2s, inset-block-start 0.2s, width 0.2s,
+    height 0.2s, box-shadow 0.2s;
+}
+
+/* Tooltip styles */
+:where(.custom-slider).ant-tooltip .ant-tooltip-inner {
+  min-width: 1em;
+  min-height: 32px;
+  padding: 6px 8px;
+  color: #000000;
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 6px 16px 0 rgba(255, 255, 255, 0.08),
+    0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(255, 255, 255, 0.05);
+}
+
+.bg-heroSection {
+  background-image: url(../../assest/bg-header.png);
+  background-size: cover;
+}
+
+
+.photoText {
+  visibility: hidden;
+}
+.photoGallery:hover .photoText {
+  visibility: visible;
+  transition: 2s;
+}
+.photoGallery:hover .teamMemberImg {
+  opacity: 0.3;
+  transition: 1s;
+}
+
+
+.text-gradient {
+  background: linear-gradient(to right, #01ACD6, #24B15F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

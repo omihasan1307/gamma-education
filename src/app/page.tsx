@@ -1,9 +1,15 @@
-import Image from 'next/image';
+import BottomInvitationSection from "@/components/Home/BottomInvitationSection";
+import CollaborateSection from "@/components/Home/CollaborateSection";
+import HeroSection from "@/components/Home/HeroSection";
+import SecondarySection from "@/components/Home/SecondarySection";
 
 export default function Home() {
   return (
-    <div>
-      <span className='border-2 border-indigo-600'>Hello World</span>
+    <div className="bg-heroSection">
+      <HeroSection />
+      <SecondarySection />
+      <CollaborateSection />
+      <BottomInvitationSection />
     </div>
   );
 }
