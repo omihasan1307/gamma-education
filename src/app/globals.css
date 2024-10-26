@@ -5,6 +5,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #01ACD6;
+  --secondary: #24B15F;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -98,6 +100,9 @@ body {
     0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(255, 255, 255, 0.05);
 }
 
+
+
+
 .bg-heroSection {
   background-image: url(../../assest/bg-header.png);
   background-size: cover;
@@ -118,7 +123,7 @@ body {
 
 
 .text-gradient {
-  background: linear-gradient(to right, #01ACD6, #24B15F);
+  background: linear-gradient(to right, var(--primary) , var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
