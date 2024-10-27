@@ -24,7 +24,7 @@ const stages = [
 
 const SecondarySection = () => {
   return (
-    <div className="max-w-screen-xl mx-auto  text-center px-2">
+    <div className="max-w-screen-xl mx-auto text-center px-2">
       <div className="mt-10 grid gap-10 md:grid-cols-3">
         {stages.map((stage) => (
           <div key={stage.id} className="flex items-center gap-5 ">

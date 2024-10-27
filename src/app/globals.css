@@ -5,8 +5,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary: #01ACD6;
-  --secondary: #24B15F;
+  --primary: #01acd6;
+  --secondary: #24b15f;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -28,7 +28,7 @@ body {
   }
 }
 
-:where(.css-ccdg5a).ant-slider:hover .ant-slider-track {
+/* :where(.css-ccdg5a).ant-slider:hover .ant-slider-track {
   background-color: #f0f2f5;
 }
 
@@ -69,8 +69,7 @@ body {
   border-radius: 2px;
 }
 
-:where(.css-dev-only-do-not-override-ccdg5a).ant-slider:hover
-  .ant-slider-track {
+:where(.css-dev-only-do-not-override-ccdg5a).ant-slider:hover .ant-slider-track {
   background-color: transparent !important;
 }
 
@@ -85,28 +84,27 @@ body {
   box-shadow: 0 0 0 2px #36b37e;
   border-radius: 50%;
   cursor: pointer;
-  transition: inset-inline-start 0.2s, inset-block-start 0.2s, width 0.2s,
-    height 0.2s, box-shadow 0.2s;
+  transition: inset-inline-start 0.2s, inset-block-start 0.2s, width 0.2s, height 0.2s, box-shadow 0.2s;
 }
 
 /* Tooltip styles */
-:where(.custom-slider).ant-tooltip .ant-tooltip-inner {
+/* :where(.custom-slider).ant-tooltip .ant-tooltip-inner {
   min-width: 1em;
   min-height: 32px;
   padding: 6px 8px;
   color: #000000;
   background-color: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 6px 16px 0 rgba(255, 255, 255, 0.08),
-    0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(255, 255, 255, 0.05);
-}
+  box-shadow: 0 6px 16px 0 rgba(255, 255, 255, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(255, 255, 255, 0.05);
+}  */
 
-
-
-
-.bg-heroSection {
+.bg-Section {
   background-image: url(../../assest/bg-header.png);
-  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+
 }
+
 
 
 .photoText {
@@ -121,9 +119,14 @@ body {
   transition: 1s;
 }
 
+.slider-container {
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+}
 
 .text-gradient {
-  background: linear-gradient(to right, var(--primary) , var(--secondary));
+  background: linear-gradient(to right, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

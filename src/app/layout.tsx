@@ -6,6 +6,9 @@ import Footer from "@/shared/Footer/Footer";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import TanStackProvider from "@/providers/TanstackProvider";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

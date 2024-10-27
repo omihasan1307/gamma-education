@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const HeroSection = () => {
   return (
-    <div className="max-w-screen-xl mx-auto py-28 text-center">
+    <div className="max-w-screen-xl mx-auto py-28 text-center ">
       <div className="flex items-center justify-center flex-col space-y-5">
       <SectionHeader text="Your Partner in SaaS Design Solutions" icon={FaBoltLightning} />
       <p className="text-5xl font-bold  leading-tight">
