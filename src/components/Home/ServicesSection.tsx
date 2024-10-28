@@ -1,7 +1,8 @@
+import SectionHeader from "@/shared/common/SectionHeader";
 import { CgWebsite } from "react-icons/cg";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { MdDesignServices, MdOutlineRocketLaunch } from "react-icons/md";
-import { RiLayout3Line } from "react-icons/ri";
+import { RiLayout3Line, RiServiceFill } from "react-icons/ri";
 import { TbDeviceDesktopCode } from "react-icons/tb";
 
 const ServicesSection = () => {
@@ -48,6 +49,7 @@ const ServicesSection = () => {
     <>
       <div className="max-w-screen-xl mx-auto text-center py-28  px-2">
         <div className="flex items-center justify-center flex-col space-y-5">
+          <SectionHeader text="Our Services" icon={RiServiceFill} />
           <div className="text-5xl text-gray-800 leading-tight">
             Explore Our <span className="font-bold hover:text-sk"> Services</span>
           </div>
