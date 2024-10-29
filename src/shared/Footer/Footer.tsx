@@ -17,13 +17,13 @@ const Footer = () => {
             <h2 className="text-xl font-semibold">Follow us</h2>
             <div className="flex space-x-5">
               <Link href={"/"} target="_blank">
-                <FaFacebookF className=" w-10 h-10 border p-2 rounded bg-gradient-custom text-white " />
+                <FaFacebookF className=" w-10 h-10  p-2 rounded bg-[#0F6EF9] text-white " />
               </Link>
               <Link href={"/"} target="_blank">
-                <FaLinkedinIn className=" w-10 h-10 border p-2 rounded bg-gradient-custom text-white " />
+                <FaLinkedinIn className=" w-10 h-10 border p-2 rounded bg-[#0A66C2] text-white " />
               </Link>
               <Link href={"/"} target="_blank">
-                <FaInstagram className=" w-10 h-10 border p-2 rounded bg-gradient-custom text-white " />
+                <FaInstagram className="w-10 h-10 p-2 rounded  bg-gradient-to-r from-[#f09433] via-[#e6683c] to-[#dc2743] text-white" />
               </Link>
             </div>
           </div>

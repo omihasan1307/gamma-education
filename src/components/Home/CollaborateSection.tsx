@@ -37,8 +37,8 @@ const CollaborateSection = () => {
       </div>
 
       <div className="mt-20 grid gap-5 md:grid-cols-3">
-        {stages.map(stage => (
-          <div key={stage.id} className={` text-left rounded-2xl p-8 shadow-lg text-white transition duration-300 hover:shadow-xl ${stage.id === 1 ? 'bg-[#37a0bd]' :  stage.id === 2 ?  'bg-[#23b163be]' : 'bg-[#E8EDE8] text-gray-700'}`}>
+        {stages.map((stage) => (
+          <div key={stage.id} className={` text-left rounded-2xl p-8 shadow-lg  transition duration-300 hover:shadow-xl ${stage.id === 1 ? 'bg-[#37a0bd] text-white' :  stage.id !== 3 ?  'bg-[#23b163be] text-white' : 'bg-[#E8EDE8] text-gray-700'}`}>
             <stage.icon className="text-4xl" />
             <h3 className="text-2xl font-bold my-4">{stage.title}</h3>
             <p className="">{stage.description}</p>

@@ -39,7 +39,7 @@ const ContactForm = () => {
               {...register("name", { required: "Name is required" })}
               type="text"
               placeholder="Your Name"
-              className={`px-4 py-2 rounded-xl border focus:outline-none w-full duration-300 hover:duration-300 ${
+              className={`px-4 py-4 rounded-xl border focus:outline-none w-full duration-300 hover:duration-300 ${
                 errors.name ? "border-red-500" : "hover:border-baseColor"
               }`}
             />
@@ -59,7 +59,7 @@ const ContactForm = () => {
               })}
               type="email"
               placeholder="Your Email"
-              className={`px-4 py-2 rounded-xl border focus:outline-none w-full duration-300 hover:duration-300 ${
+              className={`px-4 py-4 rounded-xl border focus:outline-none w-full duration-300 hover:duration-300 ${
                 errors.email ? "border-red-500" : "hover:border-baseColor"
               }`}
             />
