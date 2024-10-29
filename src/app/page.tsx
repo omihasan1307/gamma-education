@@ -7,7 +7,7 @@ import ServicesSection from "@/components/Home/ServicesSection";
 
 export default function Home() {
   return (
-    <div className="bg-Section ">
+    <div className="bg-Section overflow-hidden">
       <HeroSection />
       <SecondarySection />
       <TechnologySection/>

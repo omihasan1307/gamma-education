@@ -61,7 +61,7 @@ const ServicesSection = () => {
           {services?.map((service) => (
             <div
               key={service.id}
-              className=" duration-300 bg-white rounded-[18px] bg-gradient-to-tr hover:bg-gradient-to-br from-[#24B15F] via-[#01d673] to-[#01ACD6] shadow-lg hover:p-1 hover:shadow-2xl">
+              className=" duration-500 rounded-[18px] shadow-lg hover:scale-105 hover:shadow-2xl cursor-pointer">
               <div className="h-full w-full px-5 py-10 bg-white rounded-[16px]">
                 <div className="flex justify-center">
                   <div className="text-6xl flex justify-center align-middle rounded-full bg-gradient-custom w-24 h-24 p-4 text-white">
