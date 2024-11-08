@@ -7,7 +7,7 @@ import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { img } from "../constant/imgExport";
 
 const Footer = () => {
-  const [year, setYear] = useState(new Date().getFullYear());
+  const [year] = useState(new Date().getFullYear());
   return (
     <div>
       <div className="max-w-screen-xl mx-auto pt-20">

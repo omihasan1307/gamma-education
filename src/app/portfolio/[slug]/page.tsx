@@ -2,9 +2,7 @@
 
 import ProjectSlider from "@/components/Portfolio/ProjectSlider";
 
-const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
-  const slug = (await params).slug;
-
+const page = async () => {
   return (
     <div className="max-w-screen-xl my-10 mx-auto justify-center grid gap-4 grid-cols-1 lg:grid-cols-3 md:gap-6 xl:gap-8 px-10 lg:px-0 ">
       <div className="max-w-sm mx-auto">

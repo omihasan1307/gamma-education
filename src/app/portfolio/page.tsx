@@ -1,9 +1,9 @@
-import TechnologySection from "@/components/Home/TechnologySection";
-import SectionHeader from "@/shared/common/SectionHeader";
-import { img } from "@/shared/constant/imgExport";
 import Image from "next/image";
 import Link from "next/link";
 import { RiServiceFill } from "react-icons/ri";
+
+import { img } from "@/shared/constant/imgExport";
+import SectionHeader from "@/shared/common/SectionHeader";
 
 const page = () => {
   const projects = [

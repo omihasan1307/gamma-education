@@ -1,12 +1,12 @@
-import SectionHeader from "@/shared/common/SectionHeader";
-import { img } from "@/shared/constant/imgExport";
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
 import { CgWebsite } from "react-icons/cg";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { MdArrowOutward, MdDesignServices, MdOutlineRocketLaunch } from "react-icons/md";
 import { RiLayout3Line, RiServiceFill } from "react-icons/ri";
 import { TbDeviceDesktopCode } from "react-icons/tb";
+
+import SectionHeader from "@/shared/common/SectionHeader";
 
 const page = () => {
   const services = [

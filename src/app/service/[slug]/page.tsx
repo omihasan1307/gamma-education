@@ -1,8 +1,6 @@
-import Image from "next/image";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 
-export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
-  const slug = (await params).slug;
+export default async function Page() {
   return (
     <>
       <section className="pt-8 lg:pt-32 bg-gradient-custom-light bg-center bg-cover">
