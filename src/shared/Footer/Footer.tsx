@@ -1,15 +1,22 @@
+"use client";
 import Image from "next/image";
-import { img } from "../constant/imgExport";
+import { useState } from "react";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
+import { img } from "../constant/imgExport";
+
 const Footer = () => {
+  const [year, setYear] = useState(new Date().getFullYear());
   return (
     <div>
-      <div className="max-w-screen-xl mx-auto py-20">
+      <div className="max-w-screen-xl mx-auto pt-20">
         <div className="lg:grid grid-cols-3 gap-10 px-10 lg:px-0 ">
           <div className="space-y-5 text-slate-500  pb-5 lg:pb-0">
-            <Image src={img.Logo} alt={"logo"} width={150} height={50} />
+            <div className="flex items-center gap-2">
+              <Image src={img.Logo} alt={"logo"} width={50} />
+              <h1 className="text-4xl ">binaryhooks</h1>
+            </div>
             <p>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. In, qui quo atque et tempore, aspernatur iusto sapiente dolore quisquam, ipsum
               autem neque eveniet
@@ -89,9 +96,9 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <hr className="my-10" />
-        <div className="text-center">
-          <p>Copyright © {new Date().getFullYear()} Binary Hooks. All rights reserved.</p>
+        <hr className="my-5" />
+        <div className="text-center mb-5">
+          <p className="">Copyright &copy; {year} Binary Hooks. All rights reserved.</p>
         </div>
       </div>
     </div>

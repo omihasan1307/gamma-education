@@ -4,16 +4,18 @@ import HeroSection from "@/components/Home/HeroSection";
 import SecondarySection from "@/components/Home/SecondarySection";
 import TechnologySection from "@/components/Home/TechnologySection";
 import ServicesSection from "@/components/Home/ServicesSection";
+import PortfolioSection from "@/components/Home/PortfolioSection";
 
 export default function Home() {
   return (
     <div className="bg-Section overflow-hidden">
       <HeroSection />
       <SecondarySection />
-      <TechnologySection/>
+      <TechnologySection />
       <CollaborateSection />
       <BottomInvitationSection />
       <ServicesSection />
+      <PortfolioSection />
     </div>
   );
 }

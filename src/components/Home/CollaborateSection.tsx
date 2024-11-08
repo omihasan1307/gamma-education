@@ -40,7 +40,7 @@ const CollaborateSection = () => {
           <div
             key={stage.id}
             className={` text-left rounded-2xl p-8 shadow-lg text-white transition duration-300 hover:shadow-xl ${
-              stage.id === 1 ? "bg-[#37a0bd]" : stage.id === 2 ? "bg-[#23b163be]" : "bg-[#E8EDE8] text-gray-700"
+              stage.id === 1 ? "bg-[#1e7e6e]" : stage.id === 2 ? "bg-[#023047]" : "bg-[#dfa000] text-gray-700"
             }`}>
             <stage.icon className="text-4xl" />
             <h3 className="text-2xl font-bold my-4">{stage.title}</h3>
