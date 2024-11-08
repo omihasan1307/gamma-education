@@ -12,15 +12,16 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        basicColor: "#24B15F",
+        basicColor: "rgba(2,133,255,1)",
         secondaryColor: "#F9DEC9",
         grayColor: "#F7F8FA", // <-- Moved grayColor here
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        "gradient-custom": "linear-gradient(90deg, #01ACD6 20%, #24B15F 100%)",
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        // "gradient-custom": "linear-gradient(90deg, #01ACD6 20%, #24B15F 100%)",
+        "gradient-custom": "linear-gradient(112deg, rgba(0,221,218,1) 0%, rgba(2,133,255,1) 100%)",
+        "gradient-custom-light": "linear-gradient(90deg, rgba(223,246,255,1) 0%, rgba(250,251,255,1) 48%, rgba(243,240,255,1) 100%)",
       },
     },
   },
