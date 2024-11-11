@@ -1,12 +1,12 @@
-import React from "react";
+import SectionHeader from "@/shared/common/SectionHeader";
+import { img } from "@/shared/constant/imgExport";
 import Link from "next/link";
+import React from "react";
 import { CgWebsite } from "react-icons/cg";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { MdArrowOutward, MdDesignServices, MdOutlineRocketLaunch } from "react-icons/md";
 import { RiLayout3Line, RiServiceFill } from "react-icons/ri";
 import { TbDeviceDesktopCode } from "react-icons/tb";
-
-import SectionHeader from "@/shared/common/SectionHeader";
 
 const page = () => {
   const services = [
@@ -48,26 +48,26 @@ const page = () => {
     },
   ];
   return (
-    <div className="bg-[#F7F8FA]">
+    <div className="">
       {/* Header */}
-      <div className="bg-gradient-custom-light flex items-center justify-center py-10 px-5 flex-col space-y-5">
+      <div className="bg-gradient-custom-light dark:bg-gradient-custom-dark flex items-center text-center justify-center py-10 px-5 flex-col space-y-5">
         <SectionHeader text="Our Services" icon={RiServiceFill} />
-        <div className="text-5xl text-gray-800 leading-tight">
+        <div className="text-5xl leading-tight">
           Explore <span className="font-bold hover:text-sk"> BinaryHooks Services</span>
         </div>
         <p className="text-gray-500">Get your dream come true by our excellent team members</p>
       </div>
       {/* Section */}
-      <div className="max-w-screen-xl mx-auto mt-20 pb-20 grid gap-10 md:grid-cols-3 text-center">
+      <div className="max-w-screen-xl mx-auto mt-20 pb-20 grid gap-10 md:grid-cols-3 text-center px-2">
         {services.map((service) => (
-          <div key={service.id} className=" duration-500 rounded-[18px] shadow-lg hover:scale-105 hover:shadow-2xl cursor-pointer">
-            <div className="h-full w-full px-5 py-10 bg-white rounded-[16px]">
+          <div key={service.id} className="group duration-500 rounded-[18px] shadow-lg hover:scale-105 hover:shadow-2xl cursor-pointer">
+            <div className="h-full w-full px-5 py-10 bg-white dark:bg-black rounded-[16px] group-hover:shadow-lg opacity-80 group-hover:opacity-100 duration-300">
               <div className="flex justify-center">
-                <div className="text-6xl flex justify-center align-middle rounded-full bg-gradient-custom w-24 h-24 p-4 text-white">
+                <div className="text-6xl flex justify-center align-middle rounded-full bg-gradient-custom w-24 h-24 p-4 text-white group-hover:-rotate-12 duration-300">
                   {service.icon}
                 </div>
               </div>
-              <h2 className="text-2xl font-semibold text-gray-800 pt-5 pb-2">{service.title}</h2>
+              <h2 className="text-2xl font-semibold pt-5 pb-2">{service.title}</h2>
               {/* <p className="">{service.description.length > 123 ? service.description.slice(0, 123) + "..." : service.description}</p> */}
 
               <Link href={`/service/${service.id}`} className="text-basicColor flex justify-center font-semibold p-2 me-2 hover:text- duration-300">

@@ -1,28 +1,26 @@
-import Logo from "../../../assest/logo.png";
-import LogoWithText from "../../../assest/logotext.svg";
+import Logo from "../../../assets/logo.png";
 
-import BgHeader from "../../../assest/bg-header.png";
-import About from "../../../assest/about.webp";
-import discussion from "../../../assest/discussion.jpg";
+import BgHeader from "../../../assets/bg-header.png";
+import About from "../../../assets/about.webp";
+import discussion from "../../../assets/discussion.jpg";
 
-import javascript from "../../../assest/tech/js.svg";
-import typescript from "../../../assest/tech/ts.svg";
-import python from "../../../assest/tech/python.svg";
-import angular from "../../../assest/tech/angular.svg";
-import reactjs from "../../../assest/tech/reactjs.svg";
-import nextjs from "../../../assest/tech/nextjs.svg";
-import django from "../../../assest/tech/django.svg";
-import nodejs from "../../../assest/tech/nodejs.svg";
-import mongodb from "../../../assest/tech/mongodb.svg";
-import mysql from "../../../assest/tech/mysql.svg";
+import javascript from "../../../assets/tech/js.svg";
+import typescript from "../../../assets/tech/ts.svg";
+import python from "../../../assets/tech/python.svg";
+import angular from "../../../assets/tech/angular.svg";
+import reactjs from "../../../assets/tech/reactjs.svg";
+import nextjs from "../../../assets/tech/nextjs.svg";
+import django from "../../../assets/tech/django.svg";
+import nodejs from "../../../assets/tech/nodejs.svg";
+import mongodb from "../../../assets/tech/mongodb.svg";
+import mysql from "../../../assets/tech/mysql.svg";
 
-import p1 from "../../../assest/project1.png";
-import p2 from "../../../assest/project2.png";
-import p3 from "../../../assest/project3.png";
-import p4 from "../../../assest/project4.png";
+import p1 from "../../../assets/project1.png";
+import p2 from "../../../assets/project2.png";
+import p3 from "../../../assets/project3.png";
+import p4 from "../../../assets/project4.png";
 
 export const img = {
-  LogoWithText,
   Logo,
   BgHeader,
   About,

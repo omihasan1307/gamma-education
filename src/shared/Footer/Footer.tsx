@@ -7,11 +7,10 @@ import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { img } from "../constant/imgExport";
 
 const Footer = () => {
-  const [year] = useState(new Date().getFullYear());
   return (
     <div>
       <div className="max-w-screen-xl mx-auto pt-20">
-        <div className="lg:grid grid-cols-3 gap-10 px-10 lg:px-0 ">
+        <div className="lg:grid grid-cols-3 gap-10 px-4 lg:px-0 ">
           <div className="space-y-5 text-slate-500  pb-5 lg:pb-0">
             <div className="flex items-center gap-2">
               <Image src={img.Logo} alt={"logo"} width={50} />
@@ -96,10 +95,10 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <hr className="my-5" />
-        <div className="text-center mb-5">
-          <p className="">Copyright &copy; {year} Binary Hooks. All rights reserved.</p>
-        </div>
+      </div>
+
+      <div className="text-center mt-8 border-t border-gray-500 py-4 px-4">
+        <p className="">Copyright © {new Date().getFullYear()} Binary Hooks. All rights reserved.</p>
       </div>
     </div>
   );
