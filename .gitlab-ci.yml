@@ -39,4 +39,4 @@ deploy_to_ftp:
     - deploy  # Adjust branch as needed
   script:
     - apt-get update -y && apt-get install -y lftp
-    - lftp -c "open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST; mirror -R .next $FTP_PATH/.next; mirror -R node_modules $FTP_PATH/node_modules; put package.json -o $FTP_PATH/package.json; put package-lock.json -o $FTP_PATH/package-lock.json"
+    - lftp -c "open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST; mirror -R .next /.next; mirror -R node_modules /node_modules; put package.json -o /package.json; put package-lock.json -o /package-lock.json"
