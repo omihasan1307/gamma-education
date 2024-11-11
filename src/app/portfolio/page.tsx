@@ -41,14 +41,14 @@ const page = () => {
   return (
     <div className="">
       {/* Header */}
-      <div className="bg-gradient-custom-light flex items-center justify-center mb-10 py-10 px-5 flex-col space-y-5">
+      <div className="bg-gradient-custom-light dark:bg-gradient-custom-dark flex items-center text-center justify-center py-10 px-5 flex-col space-y-5">
         <SectionHeader text="Our Portfolio" icon={RiServiceFill} />
-        <div className="text-5xl text-gray-800 leading-tight">
+        <div className="text-5xl leading-tight">
           Explore Our<span className="font-bold hover:text-sk"> Portfolios</span>
         </div>
         <p className="text-gray-500">Get your dream come true by our excellent team members</p>
       </div>
-      <div className="max-w-screen-xl  mx-auto py-28 px-2 bg-white dark:bg-gray-800 h-full sm:py-8 lg:py-12">
+      <div className="max-w-screen-xl  mx-auto py-28 px-2 h-full sm:py-8 lg:py-12">
         <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6 xl:gap-8">
             {projects.map((project) => (
@@ -59,7 +59,7 @@ const page = () => {
                 <Image
                   src={project.thumbnail}
                   alt={""}
-                  className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                  className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110 group-hover:-rotate-6"
                 />
 
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>

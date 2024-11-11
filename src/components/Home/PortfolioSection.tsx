@@ -41,7 +41,7 @@ const PortfolioSection = () => {
     <div className="max-w-screen-xl mx-auto py-28  px-2">
       <div className="flex items-center justify-center flex-col text-center space-y-5">
         <SectionHeader text="Checkout Out Portfolio" icon={RiServiceFill} />
-        <div className="text-5xl text-gray-800 leading-tight">
+        <div className="text-5xl leading-tight">
           Explore Our <span className="font-bold hover:text-sk"> Projects</span>
         </div>
         <p className="text-gray-500">Get your dream come true by our excellent team members</p>
@@ -49,14 +49,14 @@ const PortfolioSection = () => {
       <div className="mt-20 grid gap-10 md:grid-cols-3">
         {projects.map((project) => (
           <section key={project.id} className="w-full ">
-            <div className="rounded-xl bg-white p-3 shadow-lg duration-300 hover:scale-105 hover:transform hover:shadow-xl">
+            <div className="rounded-xl bg-white dark:bg-black opacity-80 hover:opacity-100 p-3 shadow-lg duration-300 hover:scale-105 hover:transform hover:shadow-xl">
               <Link href={"/portfolio"} aria-label="link to project">
                 <div className="relative flex items-end overflow-hidden rounded-xl">
                   <Image src={project.thumbnail} alt="{alt}" width={400} height={400} loading="eager" />
                 </div>
                 <div className="mt-1 p-2">
-                  <h3 className="text-xl text-gray-800 font-semibold px-2 my-2 lg:text-2xl">{project.title}</h3>
-                  <p className="text-s text-black px-2">{project.description.slice(0, 100) + "..."}</p>
+                  <h3 className="text-xl font-semibold px-2 my-2 lg:text-2xl">{project.title}</h3>
+                  <p className="text-s px-2">{project.description.slice(0, 100) + "..."}</p>
                   {/* <Tags tags={tags} /> */}
                 </div>
               </Link>
