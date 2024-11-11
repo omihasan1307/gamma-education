@@ -1,0 +1,42 @@
+# .gitlab-ci.yml
+
+stages:
+  - install
+  - build
+  - deploy
+
+# Cache npm dependencies to speed up subsequent builds
+cache:
+  paths:
+    - node_modules/
+
+# Install dependencies
+install_dependencies:
+  stage: install
+  image: node:20  # Use Node.js 20 image
+  script:
+    - npm install
+
+# Build the Next.js app for SSR
+build_app:
+  stage: build
+  image: node:20
+  script:
+    - npm run build  # Builds the .next directory for SSR
+  artifacts:
+    paths:
+      - .next
+      - package.json
+      - package-lock.json
+      - node_modules
+
+# Deploy to FTP server
+deploy_to_ftp:
+  stage: deploy
+  image: node:20
+  environment: production
+  only:
+    - main  # Adjust branch as needed
+  script:
+    - apt-get update -y && apt-get install -y lftp
+    - lftp -c "open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST; mirror -R .next $FTP_PATH/.next; mirror -R node_modules $FTP_PATH/node_modules; put package.json -o $FTP_PATH/package.json; put package-lock.json -o $FTP_PATH/package-lock.json"
