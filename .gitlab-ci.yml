@@ -1,5 +1,3 @@
-# .gitlab-ci.yml
-
 stages:
   - install
   - build
@@ -16,6 +14,8 @@ install_dependencies:
   image: node:20  # Use Node.js 20 image
   script:
     - npm install
+    # Install sharp with platform-specific options to ensure compatibility
+    - npm install --platform=linux --arch=x64 sharp
 
 # Build the Next.js app for SSR
 build_app:
@@ -36,7 +36,7 @@ deploy_to_ftp:
   image: node:20
   environment: production
   only:
-    - main  # Adjust branch as needed
+    - deploy  # Adjust branch as needed
   script:
     - apt-get update -y && apt-get install -y lftp
     - lftp -c "open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST; mirror -R .next $FTP_PATH/.next; mirror -R node_modules $FTP_PATH/node_modules; put package.json -o $FTP_PATH/package.json; put package-lock.json -o $FTP_PATH/package-lock.json"
