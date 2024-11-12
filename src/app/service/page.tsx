@@ -1,5 +1,4 @@
 import SectionHeader from "@/shared/common/SectionHeader";
-import { img } from "@/shared/constant/imgExport";
 import Link from "next/link";
 import React from "react";
 import { CgWebsite } from "react-icons/cg";

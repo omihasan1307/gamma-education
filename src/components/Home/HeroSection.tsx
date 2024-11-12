@@ -10,7 +10,7 @@ const HeroSection = () => {
         <div className="flex items-center justify-center flex-col space-y-5">
           <SectionHeader text="Your Partner in SaaS Design Solutions" icon={FaBoltLightning} />
           <p className="text-5xl font-bold  leading-tight">
-            Designing Your <br /> Vision with Passion
+          Bringing Your Vision  <br /> to Life with Dedication
           </p>
           <p className="text-gray-500">Making your vision awesome since forever</p>
         </div>
@@ -18,7 +18,7 @@ const HeroSection = () => {
         <Link
           href={"/inquiry"}
           className="md:w-auto m-14 inline-flex items-center justify-center py-3 px-7 text-base font-semibold text-center text-white rounded-full bg-gradient-custom shadow-xs opacity-85 hover:opacity-100 transition-all duration-500">
-          Let's Collaborate
+          Let&apos;s Collaborate
           <MdOutlineArrowForwardIos />
         </Link>
       </div>

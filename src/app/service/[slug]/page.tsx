@@ -1,8 +1,6 @@
-import Image from "next/image";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 
-export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
-  const slug = (await params).slug;
+export default async function Page() {
   return (
     <>
       <section className="pt-8 lg:pt-32 bg-gradient-custom-light dark:bg-gradient-custom-dark bg-center bg-cover">
@@ -16,7 +14,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           <a
             href="javascript:;"
             className="w-full md:w-auto mb-14 inline-flex items-center justify-center py-3 px-7 text-base font-semibold text-center text-white rounded-full bg-gradient-custom shadow-xs opacity-85 hover:opacity-100 transition-all duration-500">
-            Let's Collaborate
+            Let&apos;s Collaborate
             <MdOutlineArrowForwardIos />
           </a>
           <div className="flex justify-center">

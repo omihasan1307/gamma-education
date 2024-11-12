@@ -1,14 +1,28 @@
-# Define stages
 stages:
+  - install
   - build
   - deploy
+
+install:
+  image: node:20
+  stage: install
+  script:
+    - npm install
+    - npm install --platform=linux --arch=x64 sharp
+  artifacts:
+    paths:
+      - node_modules
+      - package.json
+      - package-lock.json
+  only:
+    - main
 
 build:
   image: node:20
   stage: build
+  dependencies:
+    - install
   script:
-    - npm install
-    - npm install --platform=linux --arch=x64 sharp
     - npm run build
   artifacts:
     paths:
@@ -16,13 +30,14 @@ build:
       - package.json
       - package-lock.json
   only:
-    - deploy
+    - main
 
 deploy:
   stage: deploy
   image: alpine:latest
+  dependencies:
+    - build
   before_script:
-    # Install lftp for FTP deployment
     - apk add --no-cache lftp
   script:
     - echo "Starting FTP deployment for SSR app"
@@ -32,11 +47,11 @@ deploy:
         set ssl:verify-certificate no;
         set ftp:passive-mode yes;
         
-        # Exclude node_modules during the upload process
-        mirror -R --exclude node_modules . /  # Upload all files except node_modules
+        # Exclude node_modules and .gitignore during the upload process
+        mirror -R --exclude node_modules . /
         put package.json -o /package.json
         put package-lock.json -o /package-lock.json
         bye;
       "
   only:
-    - deploy
+    - main

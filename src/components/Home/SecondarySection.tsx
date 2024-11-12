@@ -5,7 +5,6 @@ const stages = [
   {
     id: 1,
     icon: MdOutlineSettings,
-    icon: MdOutlineSettings,
     title: "Highly Expert Team",
     description: "We provide the most responsive and functional IT design",
   },
@@ -17,7 +16,6 @@ const stages = [
   },
   {
     id: 3,
-    icon: LuBadgeDollarSign,
     icon: LuBadgeDollarSign,
     title: "Competitive Pricing",
     description: "We provide the most responsive and functional IT design",
