@@ -1,42 +1,42 @@
+# Define stages
 stages:
-  - install
   - build
   - deploy
 
-# Cache npm dependencies to speed up subsequent builds
-cache:
-  paths:
-    - node_modules/
-
-# Install dependencies
-install_dependencies:
-  stage: install
-  image: node:20  # Use Node.js 20 image
+build:
+  image: node:20
+  stage: build
   script:
     - npm install
-    # Install sharp with platform-specific options to ensure compatibility
     - npm install --platform=linux --arch=x64 sharp
-
-# Build the Next.js app for SSR
-build_app:
-  stage: build
-  image: node:20
-  script:
-    - npm run build  # Builds the .next directory for SSR
+    - npm run build
   artifacts:
     paths:
       - .next
       - package.json
       - package-lock.json
-      - node_modules
-
-# Deploy to FTP server
-deploy_to_ftp:
-  stage: deploy
-  image: node:20
-  environment: production
   only:
-    - deploy  # Adjust branch as needed
+    - deploy
+
+deploy:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    # Install lftp for FTP deployment
+    - apk add --no-cache lftp
   script:
-    - apt-get update -y && apt-get install -y lftp
-    - lftp -c "open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST; mirror -R .next /.next; mirror -R node_modules /node_modules; put package.json -o /package.json; put package-lock.json -o /package-lock.json"
+    - echo "Starting FTP deployment for SSR app"
+    - |
+      lftp -u binaryhooks@binaryhooks.com,StrongPassword123! 192.250.235.24 -e "
+        set ftp:ssl-allow no;
+        set ssl:verify-certificate no;
+        set ftp:passive-mode yes;
+        
+        # Exclude node_modules during the upload process
+        mirror -R --exclude node_modules . /  # Upload all files except node_modules
+        put package.json -o /package.json
+        put package-lock.json -o /package-lock.json
+        bye;
+      "
+  only:
+    - deploy
