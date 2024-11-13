@@ -1,3 +1,62 @@
+# stages:
+#   - install
+#   - build
+#   - deploy
+
+# install:
+#   image: node:20
+#   stage: install
+#   script:
+#     - npm install
+#     - npm install --platform=linux --arch=x64 sharp
+#   artifacts:
+#     paths:
+#       - node_modules
+#       - package.json
+#       - package-lock.json
+#   only:
+#     - main
+
+# build:
+#   image: node:20
+#   stage: build
+#   dependencies:
+#     - install
+#   script:
+#     - npm run build
+#   artifacts:
+#     paths:
+#       - .next
+#       - package.json
+#       - package-lock.json
+#   only:
+#     - main
+
+# deploy:
+#   stage: deploy
+#   image: alpine:latest
+#   dependencies:
+#     - build
+#   before_script:
+#     - apk add --no-cache lftp
+#   script:
+#     - echo "Starting FTP deployment for SSR app"
+#     - |
+#       lftp -u binaryhooks@binaryhooks.com,StrongPassword123! 192.250.235.24 -e "
+#         set ftp:ssl-allow no;
+#         set ssl:verify-certificate no;
+#         set ftp:passive-mode yes;
+        
+#         # Exclude node_modules and .gitignore during the upload process
+#         mirror -R --exclude node_modules . /
+#         put package.json -o /package.json
+#         put package-lock.json -o /package-lock.json
+#         bye;
+#       "
+#   only:
+#     - main
+
+
 stages:
   - install
   - build
@@ -38,20 +97,14 @@ deploy:
   dependencies:
     - build
   before_script:
-    - apk add --no-cache lftp
-  script:
-    - echo "Starting FTP deployment for SSR app"
+    - apk add --no-cache openssh rsync
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+    - echo "Starting SSH deployment for SSR app"
     - |
-      lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_HOST" -e "
-        set ftp:ssl-allow no;
-        set ssl:verify-certificate no;
-        set ftp:passive-mode yes;
-        
-        # Exclude node_modules and .gitignore during the upload process
-        mirror -R --exclude node_modules . /
-        put package.json -o /package.json
-        put package-lock.json -o /package-lock.json
-        bye;
-      "
+      rsync -avz --exclude 'node_modules' --exclude '.gitignore' \
+        .next package.json package-lock.json "$SSH_USER"@"$SSH_HOST":"$SSH_PATH"
+    - ssh "$SSH_USER"@"$SSH_HOST" 'pkill -f "$SSH_PATH/server.js" || true; nohup node "$SSH_PATH/server.js" > app.log 2>&1 &'
   only:
     - main
+
