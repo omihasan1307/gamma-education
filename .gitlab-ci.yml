@@ -42,7 +42,7 @@ deploy:
   script:
     - echo "Starting FTP deployment for SSR app"
     - |
-      lftp -u binaryhooks@binaryhooks.com,StrongPassword123! 192.250.235.24 -e "
+      lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_HOST" -e "
         set ftp:ssl-allow no;
         set ssl:verify-certificate no;
         set ftp:passive-mode yes;
