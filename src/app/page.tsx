@@ -23,8 +23,8 @@ export default async function Home() {
         <SecondarySection HomeSection2={HomeSection2} />
         <TechnologySection HomeSection3={HomeSection3} />
         <CollaborateSection />
-        <ServicesSection services={services} />
         <BottomInvitationSection />
+        <ServicesSection services={services} />
         <PortfolioSection projects={projects} />
         <BlogSection blogs={blogs} />
       </Suspense>
