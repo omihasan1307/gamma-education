@@ -21,7 +21,7 @@ export const useContact = () => {
     mutationKey: ["CONTACT"],
     mutationFn: async (data: any) => await contactToDb(data),
     onSuccess: (data) => {
-      toast.success(` ${data?.data}! Contact added successfully`);
+      toast.success(` ${data?.data?.detail} `);
     },
     onError: (data) => {
       toast.error(data?.message || "Contact added Failed");

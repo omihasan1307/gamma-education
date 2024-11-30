@@ -1,19 +1,24 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
-
 import { img } from "../constant/imgExport";
+import { getWebsite } from "@/actions/get/get.action";
 
-const Footer = () => {
+const Footer = async () => {
+  const { data: websiteData } = await getWebsite();
+
+  const { instagram, linkedin, facebook } = websiteData?.owner_info || {};
+
   return (
     <div>
       <div className="max-w-screen-xl mx-auto pt-20">
         <div className="lg:grid grid-cols-3 gap-10 px-4 lg:px-0 ">
           <div className="space-y-5 text-slate-500  pb-5 lg:pb-0">
             <div className="flex items-center gap-2">
-              <Image src={img.Logo} alt={"logo"} width={50} />
-              <h1 className="text-4xl ">binaryhooks</h1>
+              <Image src={img.Logo} alt="Logo" className="w-11 md:w-14" />
+              <h1 className="text-3xl md:text-4xl mx-2 text-black">binaryhooks</h1>
+              {/* <Image src={img.LogoText} alt={"logo"} width={50} /> */}
+              {/* <h1 className="text-4xl ">binaryhooks</h1> */}
             </div>
             <p>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. In, qui quo atque et tempore, aspernatur iusto sapiente dolore quisquam, ipsum
@@ -21,13 +26,13 @@ const Footer = () => {
             </p>
             <h2 className="text-xl font-semibold">Follow us</h2>
             <div className="flex space-x-5">
-              <Link href={"/"} target="_blank">
+              <Link href={facebook} target="_blank">
                 <FaFacebookF className=" w-10 h-10  p-2 rounded bg-[#0F6EF9] text-white " />
               </Link>
-              <Link href={"/"} target="_blank">
+              <Link href={linkedin} target="_blank">
                 <FaLinkedinIn className=" w-10 h-10 border p-2 rounded bg-[#0A66C2] text-white " />
               </Link>
-              <Link href={"/"} target="_blank">
+              <Link href={instagram} target="_blank">
                 <FaInstagram className="w-10 h-10 p-2 rounded  bg-gradient-to-r from-[#f09433] via-[#e6683c] to-[#dc2743] text-white" />
               </Link>
             </div>

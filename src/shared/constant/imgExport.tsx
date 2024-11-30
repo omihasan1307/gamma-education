@@ -1,4 +1,6 @@
 import Logo from "../../../assets/logo.png";
+import LogoText from "../../../assets/logotext.png";
+import notfound from "../../../assets/notFound.png";
 
 import BgHeader from "../../../assets/bg-header.png";
 import About from "../../../assets/about.webp";
@@ -39,4 +41,6 @@ export const img = {
   p2,
   p3,
   p4,
+  LogoText,
+  notfound,
 };

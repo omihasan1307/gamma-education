@@ -1,14 +1,8 @@
 "use client";
-import { img } from "@/shared/constant/imgExport";
+import { ProjectSliderProps } from "@/Types";
 import Image from "next/image";
 import Slider from "react-slick";
-const ProjectSlider = () => {
-  const projectData = [
-    { id: 1, img: img.p1, title: "React JS" },
-    { id: 2, img: img.p2, title: "Next JS" },
-    { id: 3, img: img.p3, title: "Next JS" },
-    { id: 4, img: img.p4, title: "Next JS" },
-  ];
+const ProjectSlider = ({ images }: ProjectSliderProps) => {
   const settings = {
     dots: true,
     dotsClass: "slick-dots slick-thumb",
@@ -18,13 +12,15 @@ const ProjectSlider = () => {
     slidesToScroll: 1,
   };
   return (
-    <Slider {...settings}>
-      {projectData.map((item, index) => (
-        <div key={index}>
-          <Image src={item.img} alt={item.title} className="mx-auto h-[400px] w-[400px] rounded-xl" />
-        </div>
-      ))}
-    </Slider>
+    <div className="w-full max-w-screen-lg mx-auto">
+      <Slider {...settings}>
+        {images?.map((item, index) => (
+          <div key={index}>
+            <Image src={item?.image} alt={`Image ${index + 1}`} width={400} height={400} className="mx-auto rounded-xl border" />
+          </div>
+        ))}
+      </Slider>
+    </div>
   );
 };
 

@@ -8,10 +8,11 @@ import { FaBars } from "react-icons/fa";
 import { IoIosCloseCircle } from "react-icons/io";
 
 const menuItems = [
-  { id: 2, title: "service", link: "/service" },
-  { id: 3, title: "Portfolio", link: "/portfolio" },
+  { id: 1, title: "service", link: "/service" },
+  { id: 2, title: "Portfolio", link: "/portfolio" },
   { id: 4, title: "about", link: "/about" },
   { id: 5, title: "Contact Us", link: "/contact" },
+  { id: 3, title: "BLog", link: "/blog" },
 ];
 
 const Navbar = () => {
@@ -51,9 +52,7 @@ const Navbar = () => {
   return (
     <div
       className={`${
-        isSticky
-          ? "fixed top-0 left-0 right-0  z-50 bg-gradient-custom-light dark:bg-gradient-custom-dark"
-          : "relative bg-gradient-custom-light dark:bg-gradient-custom-dark"
+        isSticky ? "fixed top-0 left-0 right-0  z-50 bg-grayColor dark:bg-gradient-custom-dark" : "relative bg-grayColor dark:bg-gradient-custom-dark"
       }`}>
       <nav className="max-w-screen-xl mx-auto transition-all duration-300 ">
         <div className="flex items-center justify-between ">
