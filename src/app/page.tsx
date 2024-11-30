@@ -17,7 +17,7 @@ export default async function Home() {
   const { services, projects, blogs } = websiteData || {};
 
   return (
-    <div className="bg-Section  ">
+    <div className="bg-Section overflow-hidden">
       <Suspense fallback={<BeatLoader color="#0291FA" loading={true} size={5} speedMultiplier={2} className="max-w-screen-2xl mx-auto" />}>
         <HeroSection HomeSection1={HomeSection1} />
         <SecondarySection HomeSection2={HomeSection2} />
