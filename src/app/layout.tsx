@@ -8,7 +8,7 @@ import { ToastContainer } from "react-toastify";
 import TanStackProvider from "@/providers/TanstackProvider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import "react-loading-skeleton/dist/skeleton.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,9 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <TanStackProvider>
           <Navbar />
           {children}

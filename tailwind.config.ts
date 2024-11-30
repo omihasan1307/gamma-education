@@ -14,7 +14,7 @@ const config: Config = {
         foreground: "var(--foreground)",
         basicColor: "#02ccff",
         secondaryColor: "#F9DEC9",
-        grayColor: "#F7F8FA", // <-- Moved grayColor here
+        grayColor: "#F7F8FA",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

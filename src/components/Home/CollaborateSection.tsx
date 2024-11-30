@@ -28,7 +28,7 @@ const stages = [
 
 const CollaborateSection = () => {
   return (
-    <div className="max-w-screen-xl mx-auto py-28 text-center px-2">
+    <div className="max-w-screen-xl mx-auto pb-28 text-center px-2">
       <div className="flex items-center justify-center flex-col space-y-5">
         <SectionHeader text="When to Collaborate" icon={IoBagOutline} />
         <p className="text-5xl font-bold leading-tight">Which Stage Are You?</p>
@@ -44,7 +44,7 @@ const CollaborateSection = () => {
             }`}>
             <stage.icon className="text-4xl" />
             <h3 className="text-2xl font-bold my-4">{stage.title}</h3>
-            <p className="">{stage.description}</p>
+            <p>{stage.description}</p>
           </div>
         ))}
       </div>
