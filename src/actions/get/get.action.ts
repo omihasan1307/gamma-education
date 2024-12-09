@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
-import axiosInstance from "@/lib/AxiosInstance";
+
+import axiosInstance from "@/shared/config/axios.config";
+import { ENV_CONFIG, FETCH_OPTIONS } from "@/shared/constant/app.constant";
 
 export const getProjectList = async () => {
   try {
@@ -19,6 +21,7 @@ export const getSingleProject = async (id: number) => {
     throw new Error(error?.message || "Failed to fetch Project item");
   }
 };
+
 export const getServiceList = async () => {
   try {
     const response = await axiosInstance.get(`/services/service/`);
@@ -39,10 +42,16 @@ export const getSingleService = async (id: number) => {
 
 export const getWebsite = async () => {
   try {
-    const response = await axiosInstance.get(`/base/website-data`);
-    return response.data;
+    const response = await fetch(`${ENV_CONFIG.baseApi}/base/website-data`, FETCH_OPTIONS);
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch website data. HTTP status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
   } catch (error: any) {
-    throw new Error(error?.message || "Failed to fetch Services item");
+    console.error("Error fetching website data:", error);
+    throw new Error(error?.message || "Failed to fetch website data");
   }
 };
 

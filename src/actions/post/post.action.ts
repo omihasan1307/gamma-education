@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
-import axiosInstance from "@/lib/AxiosInstance";
+import axiosInstance from "@/shared/config/axios.config";
 
 export const inquiryToDb = async (data: any) => {
   try {

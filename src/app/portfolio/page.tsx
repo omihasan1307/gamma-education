@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { RiServiceFill } from "react-icons/ri";
-import SectionHeader from "@/shared/common/SectionHeader";
+import { Metadata } from "next";
+import { FaProjectDiagram } from "react-icons/fa";
+
+import SectionHeader from "@/shared/components/SectionHeader";
 import { getProjectList } from "@/actions/get/get.action";
 import { TProject } from "@/Types";
-import { Metadata } from "next";
+import { img } from "@/shared/constant/imgExport";
 
 export const metadata: Metadata = {
   title: "Portfolio | Binary Hooks",
@@ -17,7 +19,7 @@ const PortfolioPage = async () => {
     <div>
       {/* Header */}
       <div className="bg-gradient-custom-light dark:bg-gradient-custom-dark flex items-center text-center justify-center py-10 px-5 flex-col space-y-5">
-        <SectionHeader text="Our Portfolio" icon={RiServiceFill} />
+        <SectionHeader text="Our Portfolio" icon={FaProjectDiagram} />
         <div className="text-5xl leading-tight">
           Explore Our<span className="font-bold hover:text-sk"> Portfolios</span>
         </div>
@@ -32,7 +34,7 @@ const PortfolioPage = async () => {
                 key={project.id}
                 className="group my-5 relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
                 <Image
-                  src={project?.featured_image}
+                  src={project?.featured_image || img.noImage}
                   alt={project?.title}
                   width={300}
                   height={300}

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { img } from "@/shared/constant/imgExport";
 import Image from "next/image";
 
 const TeamMemberPage = ({ items }: { items: any }) => {
@@ -6,7 +7,7 @@ const TeamMemberPage = ({ items }: { items: any }) => {
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 pt-28 px-2 ">
       {items?.map((member: any, index: number) => (
         <div key={index} className="relative photoGallery">
-          <Image src={member?.image} alt={member?.title} width={500} height={300} className="rounded-lg teamMemberImg" />
+          <Image src={member?.image || img.noImage} alt={member?.title} width={500} height={300} className="rounded-lg teamMemberImg" />
 
           <div className="photoText absolute top-0 w-full h-full flex flex-col justify-between ">
             <h1 className="absolute px-5 py-5 text-2xl font-bold bottom-0 uppercase ">{member?.title}</h1>{" "}

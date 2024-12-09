@@ -1,13 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+
 import { img } from "../constant/imgExport";
-import { getWebsite } from "@/actions/get/get.action";
+import { useWebsiteInfo } from "@/providers/websites.providers";
+import LoadingComponent from "./LoadingComponent";
 
-const Footer = async () => {
-  const { data: websiteData } = await getWebsite();
+const Footer = () => {
+  const { websiteInfo, loading }: any = useWebsiteInfo();
 
-  const { instagram, linkedin, facebook } = websiteData?.owner_info || {};
+  if (loading) {
+    return <LoadingComponent />;
+  }
+
+  const { instagram, linkedin, facebook } = websiteInfo?.owner_info || {};
 
   return (
     <div>
@@ -17,13 +25,12 @@ const Footer = async () => {
             <div className="flex items-center gap-2">
               <Image src={img.Logo} alt="Logo" className="w-11 md:w-14" />
               <h1 className="text-3xl md:text-4xl mx-2 text-black">binaryhooks</h1>
-              {/* <Image src={img.LogoText} alt={"logo"} width={50} /> */}
-              {/* <h1 className="text-4xl ">binaryhooks</h1> */}
             </div>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. In, qui quo atque et tempore, aspernatur iusto sapiente dolore quisquam, ipsum
-              autem neque eveniet
+              Crafting innovative software solutions tailored to your business needs. At Binary Hooks, we specialize in delivering cutting-edge
+              technology, exceptional user experiences, and scalable solutions to help your business thrive in the digital age.
             </p>
+
             <h2 className="text-xl font-semibold">Follow us</h2>
             <div className="flex space-x-5">
               <Link href={facebook} target="_blank">
@@ -86,12 +93,16 @@ const Footer = async () => {
                 <li className="flex space-x-3 items-center hover:text-basicColor hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:duration-300 ">
                   <span>Working Process</span>
                 </li>
-                <li className="flex space-x-3 items-center hover:text-basicColor hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:duration-300 ">
+                <Link
+                  href={"/privacy-policy"}
+                  className="flex space-x-3 items-center hover:text-basicColor hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:duration-300 ">
                   <span>Privacy Policy</span>
-                </li>
-                <li className="flex space-x-3 items-center hover:text-basicColor hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:duration-300 ">
+                </Link>
+                <Link
+                  href="/terms-condition"
+                  className="flex space-x-3 items-center hover:text-basicColor hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:duration-300 ">
                   <span>Terms & Conditions</span>
-                </li>
+                </Link>
                 <li className="flex space-x-3 items-center hover:text-basicColor hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:duration-300 ">
                   <span>Faqs</span>
                 </li>
@@ -101,8 +112,8 @@ const Footer = async () => {
         </div>
       </div>
 
-      <div className="text-center mt-8 border-t border-gray-500 py-4 px-4">
-        <p className="">Copyright © {new Date().getFullYear()} Binary Hooks. All rights reserved.</p>
+      <div className="text-center mt-8 border-t border-gray-200 py-4 px-4">
+        <p className="">Copyright &copy; {new Date().getFullYear()} Binary Hooks. All rights reserved.</p>
       </div>
     </div>
   );
