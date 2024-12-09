@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import SectionHeader from "@/shared/common/SectionHeader";
+import SectionHeader from "@/shared/components/SectionHeader";
 import { FaBoltLightning } from "react-icons/fa6";
 import Link from "next/link";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
@@ -14,7 +14,7 @@ const HeroSection = ({ HomeSection1 }: { HomeSection1: any }) => {
         <div className="flex items-center justify-center flex-col space-y-5">
           <SectionHeader text={subtitle} icon={FaBoltLightning} />
           <p className="text-5xl font-bold  leading-tight  lg:w-[40%]">{title || <Skeleton />}</p>
-          <div className="text-gray-500" dangerouslySetInnerHTML={{ __html: description }}></div>
+          <div className="text-gray-500 lg:w-[50%]" dangerouslySetInnerHTML={{ __html: description }}></div>
         </div>
 
         <Link

@@ -10,17 +10,17 @@ const SecondarySection = ({ HomeSection2 }: any) => {
         {items?.map((stage: any, index: number) => (
           <div key={index} className="flex items-center gap-5 hover:scale-105 duration-300 group">
             {/* Render SVG if `icon` is valid */}
-            <span
+            <div
               className="text-basicColor rounded-lg bg-slate-100 dark:bg-gradient-custom-dark w-32 h-24 py-4 px-4 group-hover:-rotate-12 duration-300"
               dangerouslySetInnerHTML={{
                 __html: stage.icon || "<svg></svg>",
-              }}></span>
+              }}></div>
             <div className="text-left">
               <h3 className="text-2xl font-bold mb-4">{stage.title}</h3>
-              <span
+              <div
                 dangerouslySetInnerHTML={{
                   __html: stage.description || "<p>Description is not available.</p>",
-                }}></span>
+                }}></div>
             </div>
           </div>
         ))}

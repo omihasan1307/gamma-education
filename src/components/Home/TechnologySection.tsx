@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import SectionHeader from "@/shared/common/SectionHeader";
+import SectionHeader from "@/shared/components/SectionHeader";
 import Slider from "react-slick";
 import Image from "next/image";
 import { GrTechnology } from "react-icons/gr";
+import { img } from "@/shared/constant/imgExport";
 
 const TechnologySection = ({ HomeSection3 }: any) => {
   const settings = {
@@ -47,7 +48,7 @@ const TechnologySection = ({ HomeSection3 }: any) => {
               <div className="rounded-md py-6">
                 {item?.image ? (
                   <Image
-                    src={item?.image}
+                    src={item?.image || img.noImage}
                     alt={item?.title || "Technology"}
                     width={200}
                     height={200}

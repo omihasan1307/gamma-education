@@ -6,6 +6,8 @@ import BgHeader from "../../../assets/bg-header.png";
 import About from "../../../assets/about.webp";
 import discussion from "../../../assets/discussion.jpg";
 
+import noImage from "../../../assets/no-image.avif";
+
 import javascript from "../../../assets/tech/js.svg";
 import typescript from "../../../assets/tech/ts.svg";
 import python from "../../../assets/tech/python.svg";
@@ -43,4 +45,5 @@ export const img = {
   p4,
   LogoText,
   notfound,
+  noImage,
 };

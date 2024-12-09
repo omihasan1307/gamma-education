@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const axiosInstance = axios.create({
-  baseURL: 'https://api.binaryhooks.com/api/v1.0',
-});
+import { ENV_CONFIG } from "@/shared/constant/app.constant";
 
+const axiosInstance = axios.create({
+  baseURL: ENV_CONFIG.baseApi,
+});
 
 export default axiosInstance;

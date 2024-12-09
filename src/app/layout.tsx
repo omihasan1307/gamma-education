@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
-import Navbar from "@/shared/Navbar/Navbar";
-import Footer from "@/shared/Footer/Footer";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import TanStackProvider from "@/providers/TanstackProvider";
+
+import "./globals.css";
+import "react-toastify/dist/ReactToastify.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-loading-skeleton/dist/skeleton.css";
+
+import TanStackProvider from "@/providers/TanstackProvider";
+import { WebsiteInfoProvider } from "@/providers/websites.providers";
+
+import { getWebsite } from "@/actions/get/get.action";
+
+import Navbar from "@/shared/components/Navbar";
+import Footer from "@/shared/components/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,20 +30,24 @@ export const metadata: Metadata = {
   description: "Binary Hooks",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const websiteData = await getWebsite();
+
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <TanStackProvider>
-          <Navbar />
-          {children}
-          <Footer />
-          <ToastContainer />
-        </TanStackProvider>
+        <WebsiteInfoProvider initialData={websiteData}>
+          <TanStackProvider>
+            <Navbar />
+            {children}
+            <Footer />
+            <ToastContainer />
+          </TanStackProvider>
+        </WebsiteInfoProvider>
       </body>
     </html>
   );

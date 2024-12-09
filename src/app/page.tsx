@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Suspense } from "react";
+import { BeatLoader } from "react-spinners";
+
 import BottomInvitationSection from "@/components/Home/BottomInvitationSection";
 import CollaborateSection from "@/components/Home/CollaborateSection";
 import HeroSection from "@/components/Home/HeroSection";
@@ -5,15 +9,14 @@ import SecondarySection from "@/components/Home/SecondarySection";
 import TechnologySection from "@/components/Home/TechnologySection";
 import ServicesSection from "@/components/Home/ServicesSection";
 import PortfolioSection from "@/components/Home/PortfolioSection";
-import { getWebsite } from "@/actions/get/get.action";
 import BlogSection from "@/components/Home/BlogSection";
-import { Suspense } from "react";
-import { BeatLoader } from "react-spinners";
+
+import { getWebsite } from "@/actions/get/get.action";
 
 export default async function Home() {
   const { data: websiteData } = await getWebsite();
 
-  const { HomeSection1, HomeSection2, HomeSection3 } = websiteData?.generics?.home_page || {};
+  const { HomeSection1, HomeSection2, HomeSection3, HomeSection4, HomeSection5, HomeSection6, HomeSection7 } = websiteData?.generics?.home_page || {};
   const { services, projects, blogs } = websiteData || {};
 
   return (
@@ -22,11 +25,11 @@ export default async function Home() {
         <HeroSection HomeSection1={HomeSection1} />
         <SecondarySection HomeSection2={HomeSection2} />
         <TechnologySection HomeSection3={HomeSection3} />
-        <CollaborateSection />
+        <CollaborateSection HomeSection4={HomeSection4} />
         <BottomInvitationSection />
-        <ServicesSection services={services} />
-        <PortfolioSection projects={projects} />
-        <BlogSection blogs={blogs} />
+        <ServicesSection services={services} HomeSection5={HomeSection5} />
+        <PortfolioSection projects={projects} HomeSection6={HomeSection6} />
+        <BlogSection blogs={blogs} HomeSection7={HomeSection7} />
       </Suspense>
     </div>
   );
