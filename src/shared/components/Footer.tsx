@@ -2,7 +2,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaEnvelope, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 
 import { img } from "../constant/imgExport";
 import { useWebsiteInfo } from "@/providers/websites.providers";
@@ -20,8 +20,8 @@ const Footer = () => {
   return (
     <div>
       <div className="max-w-screen-xl mx-auto pt-20">
-        <div className="lg:grid grid-cols-3 gap-10 px-4 lg:px-0 ">
-          <div className="space-y-5 text-slate-500  pb-5 lg:pb-0">
+        <div className="lg:grid grid-cols-2 gap-20 px-4 lg:px-0 ">
+          <div className="space-y-5 text-slate-500  pb-5 lg:pb-0 ">
             <div className="flex items-center gap-2">
               <Image src={img.Logo} alt="Logo" className="w-11 md:w-14" />
               <h1 className="text-3xl md:text-4xl mx-2 text-black">binaryhooks</h1>
@@ -40,12 +40,12 @@ const Footer = () => {
                 <FaLinkedinIn className=" w-10 h-10 border p-2 rounded bg-[#0A66C2] text-white " />
               </Link>
               <Link href={instagram} target="_blank">
-                <FaInstagram className="w-10 h-10 p-2 rounded  bg-gradient-to-r from-[#f09433] via-[#e6683c] to-[#dc2743] text-white" />
+                <FaEnvelope className="w-10 h-10 p-2 rounded  bg-gradient-to-r from-[#0F6EF9] to-[#0A66C2] text-white" />
               </Link>
             </div>
           </div>
 
-          <div className="col-span-2 lg:space-y-0 space-y-5 lg:grid grid-cols-3 ">
+          <div className="col-span-1 lg:space-y-0 space-y-5 lg:grid grid-cols-2 ">
             <div className="space-y-10">
               <p className="text-xl font-semibold pb-2 border-b-2 w-40 border-basicColor">Quick Links</p>
               <ul className="space-y-5 text-slate-500">
@@ -66,33 +66,11 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="space-y-10">
-              <p className="text-xl font-semibold pb-2 border-b-2 w-28 border-basicColor">Services</p>
-              <ul className="space-y-5 text-slate-500">
-                <li className="flex space-x-3 items-center hover:text-basicColor hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:duration-300 ">
-                  <span>UI/UX Design</span>
-                </li>
-                <li className="flex space-x-3 items-center hover:text-basicColor hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:duration-300 ">
-                  <span>App Development</span>
-                </li>
-                <li className="flex space-x-3 items-center hover:text-basicColor hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:duration-300 ">
-                  <span>Web Development</span>
-                </li>
-                <li className="flex space-x-3 items-center hover:text-basicColor hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:duration-300 ">
-                  <span>Digital Marketing</span>
-                </li>
-                <li className="flex space-x-3 items-center hover:text-basicColor hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:duration-300 ">
-                  <span>Motion Graphics</span>
-                </li>
-              </ul>
-            </div>
+
             <div className="space-y-10">
               <p className="text-xl font-semibold pb-2 border-b-2 w-28 border-basicColor">Information</p>
 
               <ul className="space-y-5 text-slate-500">
-                <li className="flex space-x-3 items-center hover:text-basicColor hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:duration-300 ">
-                  <span>Working Process</span>
-                </li>
                 <Link
                   href={"/privacy-policy"}
                   className="flex space-x-3 items-center hover:text-basicColor hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:duration-300 ">
@@ -103,9 +81,12 @@ const Footer = () => {
                   className="flex space-x-3 items-center hover:text-basicColor hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:duration-300 ">
                   <span>Terms & Conditions</span>
                 </Link>
-                <li className="flex space-x-3 items-center hover:text-basicColor hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:duration-300 ">
+
+                <Link
+                  href="/faqs"
+                  className="flex space-x-3 items-center hover:text-basicColor hover:cursor-pointer transition ease-out delay-150 duration-300  hover:translate-x-6 hover:duration-300 ">
                   <span>Faqs</span>
-                </li>
+                </Link>
               </ul>
             </div>
           </div>

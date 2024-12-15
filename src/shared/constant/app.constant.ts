@@ -1,4 +1,4 @@
-export const FETCH_OPTIONS: RequestInit = { cache: "no-store", next: { revalidate: 3600 } };
+export const FETCH_OPTIONS: RequestInit = { next: { revalidate: 3600 } };
 
 export const ENV_CONFIG = {
   baseApi: process.env.NEXT_PUBLIC_BASE_API,

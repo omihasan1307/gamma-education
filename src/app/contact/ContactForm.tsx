@@ -2,6 +2,7 @@
 "use client";
 import { TContact } from "@/Types";
 import { useContact } from "@/hooks/post/post.hook";
+import { BD_PHONES_REGEX } from "@/shared/constant/regex.constant";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 const ContactForm = () => {
@@ -11,8 +12,7 @@ const ContactForm = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<TContact>();
-
+  } = useForm<TContact>({ mode: "onChange" });
   const onSubmit: SubmitHandler<TContact> = (data: any) => {
     handleContact(data, {
       onSuccess: () => {
@@ -29,14 +29,15 @@ const ContactForm = () => {
           <div>
             <h2 className="text-xl mb-3">Phone</h2>
             <input
-              {...register("phone", { required: "phone is required" })}
-              type="number"
+              {...register("phone", { required: "phone is required", pattern: BD_PHONES_REGEX })}
+              type="tel"
               placeholder="Phone Number"
               className={`dark:bg-black px-4 py-4 rounded-xl border focus:outline-none w-full duration-300 hover:duration-300 ${
                 errors.phone ? "border-red-500" : "hover:border-baseColor"
               }`}
             />
             {errors.phone && <p className="text-red-500 text-sm pt-1">{errors.phone.message}</p>}
+            {errors.phone?.type === "pattern" && <p className="text-red-500 text-sm pt-1">Enter Valid Phone Number</p>}
           </div>
           <div>
             <h2 className="text-xl mb-3">Email Address</h2>

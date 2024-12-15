@@ -28,8 +28,6 @@ const PortfolioSection = ({ projects, HomeSection6 }: any) => {
                 </div>
                 <div className="mt-1 p-2">
                   <h3 className="text-xl font-semibold px-2 my-2 lg:text-2xl">{project.title}</h3>
-                  {/* <p className="text-s px-2">{project.description.slice(0, 100) + "..."}</p> */}
-                  {/* <Tags tags={tags} /> */}
                 </div>
               </Link>
             </div>

@@ -21,17 +21,14 @@ const BlogSection = async ({ blogs, HomeSection7 }: { blogs: any; HomeSection7: 
       <div className="mt-10 grid gap-5 md:grid-cols-3 ">
         {blogs?.map((project: any) => (
           <section key={project?.id} className="w-full h-full">
-            <div className="rounded-xl bg-white dark:bg-black opacity-80 hover:opacity-100 p-3 shadow-lg duration-300 hover:scale-105 hover:transform hover:shadow-xl">
+            <div className="rounded-xl h-full bg-white dark:bg-black opacity-80 hover:opacity-100 p-3 shadow-lg duration-300 hover:scale-105 hover:transform hover:shadow-xl">
               <Link href={`/blog/${project?.id}`} aria-label="link to project">
-                <div className="relative flex items-end overflow-hidden rounded-xl">
-                  <Image src={project?.featured_image || img.noImage} alt="{alt}" width={400} height={400} loading="eager" />
+                <div className="relative flex items-end overflow-hidden rounded-xl ">
+                  <Image src={project?.featured_image || img.noImage} alt="{alt}" width={400} height={400} loading="eager" className="h-full" />
                 </div>
                 <div className="space-y-3 py-4 px-2">
-                  <h3 className="text-xl font-semibold lg:text-2xl">
-                    {project.title?.length > 50 ? project.title?.slice(0, 50) + "..." : project.title}
-                  </h3>
-
-                  <p>{project?.subtitle?.length > 100 ? project.subtitle.slice(0, 100) + "..." : project?.subtitle}</p>
+                  <h3 className="text-xl font-semibold lg:text-2xl text-ellipsis overflow-hidden ">{project.title}</h3>
+                  <p className="text-ellipsis overflow-hidden ">{project?.subtitle}</p>
                 </div>
               </Link>
             </div>

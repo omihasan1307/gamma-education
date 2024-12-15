@@ -1,4 +1,3 @@
-
 import { Metadata } from "next";
 import InquieryForm from "./InquieryForm";
 
@@ -14,11 +13,7 @@ const InquiryPage = () => {
         <div className="text-center space-y-4 ">
           <p className="text-5xl font-semibold">Let’s make a deal together</p>
           <p className="text-gray-500">
-            Have you considered the advantages of partnering with Cansaas?{" "}
-            <br /> Don&apos;t hesitate to share your ideas below! Or{" "}
-            <span className="text-basicColor underline">
-              just book a meeting.
-            </span>
+            Have you considered the advantages of partnering with Cansaas? <br /> Don&apos;t hesitate to share your ideas below!
           </p>
         </div>
         <div>

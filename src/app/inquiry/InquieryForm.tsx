@@ -30,7 +30,7 @@ const InquieryForm = () => {
     }
   };
   return (
-    <div>
+    <div className="px-2">
       <form onSubmit={handleSubmit(onSubmit)} className=" space-y-8">
         <div className="w-full">
           <input
@@ -41,9 +41,7 @@ const InquieryForm = () => {
               errors.name ? "border-red-500" : "hover:border-baseColor"
             }`}
           />
-          {errors.name && (
-            <p className="text-red-500 text-sm pt-1">{errors.name.message}</p>
-          )}
+          {errors.name && <p className="text-red-500 text-sm pt-1">{errors.name.message}</p>}
         </div>
         <div className="w-full">
           <input
@@ -60,9 +58,7 @@ const InquieryForm = () => {
               errors.email ? "border-red-500" : "hover:border-baseColor"
             }`}
           />
-          {errors.email && (
-            <p className="text-red-500 text-sm pt-1">{errors.email.message}</p>
-          )}
+          {errors.email && <p className="text-red-500 text-sm pt-1">{errors.email.message}</p>}
         </div>
         <div>
           <input
@@ -73,9 +69,7 @@ const InquieryForm = () => {
               errors.budget ? "border-red-500" : "hover:border-baseColor"
             }`}
           />
-          {errors.budget && (
-            <p className="text-red-500 text-sm pt-1">{errors.budget.message}</p>
-          )}
+          {errors.budget && <p className="text-red-500 text-sm pt-1">{errors.budget.message}</p>}
         </div>
         <div>
           <textarea
@@ -86,18 +80,13 @@ const InquieryForm = () => {
             }`}
             rows={4}
           />
-          {errors.message && (
-            <p className="text-red-500 text-sm pt-1">
-              {errors.message.message}
-            </p>
-          )}
+          {errors.message && <p className="text-red-500 text-sm pt-1">{errors.message.message}</p>}
         </div>
-        <button
-          type="submit"
-          className="px-6 py-3 rounded-full w-full  bg-gradient-custom text-white font-semibold hover:bg-opacity-90 duration-300"
-        >
-          Send Message
-        </button>
+        <div className="flex justify-center ">
+          <button type="submit" className="px-20 py-3 rounded-full  bg-gradient-custom text-white font-semibold hover:bg-opacity-90 duration-300">
+            Send Message
+          </button>
+        </div>
       </form>
     </div>
   );

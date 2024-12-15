@@ -8,7 +8,7 @@ import LoadingComponent from "@/shared/components/LoadingComponent";
 import SectionHeader from "@/shared/components/SectionHeader";
 import { ELanguage } from "@/shared/enums/language.enum";
 
-const PrivacyPolicySection = () => {
+const TermsConditionSection = () => {
   const [activeTab, setActiveTab] = useState(ELanguage.ENGLISH);
   const { websiteInfo, loading }: any = useWebsiteInfo();
   const { privacy_and_policy_page } = websiteInfo?.generics || {};
@@ -17,17 +17,17 @@ const PrivacyPolicySection = () => {
     return <LoadingComponent />;
   }
 
-  const content = privacy_and_policy_page?.PrivacyAndPolicySection1?.items.find((item: any) => item.title === activeTab) || {};
+  const content = privacy_and_policy_page?.PrivacyAndPolicySection2?.items.find((item: any) => item.title === activeTab) || {};
 
   return (
     <div>
       <div className="bg-gradient-custom-light dark:bg-gradient-custom-dark flex items-center text-center justify-center py-10 px-5 flex-col space-y-5">
-        <SectionHeader text="Privacy Policy" icon={MdPolicy} />
+        <SectionHeader text="Terms & Conditions" icon={MdPolicy} />
         <div className="text-5xl leading-tight">
-          BinaryHooks <span className="font-bold ">Privacy Policy</span>
+          BinaryHooks <span className="font-bold ">Terms & Conditions</span>
           <div
             className="text-gray-500 lg:w-full text-sm text-center pt-5"
-            dangerouslySetInnerHTML={{ __html: privacy_and_policy_page?.PrivacyAndPolicySection1?.description }}></div>
+            dangerouslySetInnerHTML={{ __html: privacy_and_policy_page?.PrivacyAndPolicySection2?.description }}></div>
         </div>
       </div>
 
@@ -61,4 +61,4 @@ const PrivacyPolicySection = () => {
   );
 };
 
-export default PrivacyPolicySection;
+export default TermsConditionSection;

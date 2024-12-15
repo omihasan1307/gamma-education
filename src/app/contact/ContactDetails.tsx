@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { FaInstagram, FaMapMarkerAlt, FaRegPaperPlane, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+import { FaMapMarkerAlt, FaRegPaperPlane, FaFacebookF, FaLinkedinIn, FaEnvelope } from "react-icons/fa";
 
 import { useWebsiteInfo } from "@/providers/websites.providers";
 import LoadingComponent from "@/shared/components/LoadingComponent";
@@ -59,7 +59,7 @@ const ContactDetails = () => {
               <FaLinkedinIn className=" w-10 h-10 border p-2 rounded bg-[#0A66C2] text-white " />
             </Link>
             <Link href={instagram} target="_blank">
-              <FaInstagram className="w-10 h-10 p-2 rounded  bg-gradient-to-r from-[#f09433] via-[#e6683c] to-[#dc2743] text-white" />
+              <FaEnvelope className="w-10 h-10 p-2 rounded  bg-gradient-to-r from-[#0F6EF9] to-[#0A66C2] text-white" />
             </Link>
           </div>
         </div>
