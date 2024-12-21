@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { useInquiry } from "@/hooks/post/post.hook";
+import { useContact } from "@/hooks/post/post.hook";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 export type TInquiry = {
-  name: string;
+  phone: string;
   email: string;
-  budget: string;
+  subject: string;
   message: string;
 };
 
 const InquieryForm = () => {
-  const { mutate: handleInquiry, isSuccess, isPending } = useInquiry();
+  const { mutate: handleContact, isPending } = useContact();
 
   const {
     register,
@@ -21,27 +21,25 @@ const InquieryForm = () => {
   } = useForm<TInquiry>();
 
   const onSubmit: SubmitHandler<TInquiry> = async (data: any) => {
-    console.log(data);
-
-    handleInquiry(data);
-
-    if (isSuccess && !isPending) {
-      reset();
-    }
+    handleContact(data, {
+      onSuccess: () => {
+        reset();
+      },
+    });
   };
   return (
     <div className="px-2">
       <form onSubmit={handleSubmit(onSubmit)} className=" space-y-8">
         <div className="w-full">
           <input
-            {...register("name", { required: "Name is required" })}
+            {...register("phone", { required: "Name is required" })}
             type="text"
             placeholder="Your Name"
             className={`px-4 py-4 rounded-xl border focus:outline-none w-full duration-300 hover:duration-300 ${
-              errors.name ? "border-red-500" : "hover:border-baseColor"
+              errors.phone ? "border-red-500" : "hover:border-baseColor"
             }`}
           />
-          {errors.name && <p className="text-red-500 text-sm pt-1">{errors.name.message}</p>}
+          {errors.phone && <p className="text-red-500 text-sm pt-1">{errors.phone.message}</p>}
         </div>
         <div className="w-full">
           <input
@@ -62,14 +60,14 @@ const InquieryForm = () => {
         </div>
         <div>
           <input
-            {...register("budget", { required: "budget is required" })}
+            {...register("subject", { required: "subject is required" })}
             type="text"
-            placeholder="Your Project Budget"
+            placeholder="Your Project subject"
             className={`px-4 py-4 rounded-xl border focus:outline-none w-full duration-300 hover:duration-300 ${
-              errors.budget ? "border-red-500" : "hover:border-baseColor"
+              errors.subject ? "border-red-500" : "hover:border-baseColor"
             }`}
           />
-          {errors.budget && <p className="text-red-500 text-sm pt-1">{errors.budget.message}</p>}
+          {errors.subject && <p className="text-red-500 text-sm pt-1">{errors.subject.message}</p>}
         </div>
         <div>
           <textarea
@@ -84,7 +82,7 @@ const InquieryForm = () => {
         </div>
         <div className="flex justify-center ">
           <button type="submit" className="px-20 py-3 rounded-full  bg-gradient-custom text-white font-semibold hover:bg-opacity-90 duration-300">
-            Send Message
+            {isPending ? "Loading ..." : "Send Message"}
           </button>
         </div>
       </form>

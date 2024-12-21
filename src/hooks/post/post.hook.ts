@@ -23,8 +23,8 @@ export const useContact = () => {
     onSuccess: (data) => {
       toast.success(` ${data?.data?.detail} `);
     },
-    onError: (data) => {
-      toast.error(data?.message || "Contact added Failed");
+    onError: (data: any) => {
+      toast.error(data?.details?.error || "Contact added Failed");
     },
   });
 };

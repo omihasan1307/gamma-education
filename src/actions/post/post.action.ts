@@ -15,7 +15,7 @@ export const contactToDb = async (data: any) => {
     const res = await axiosInstance.post("/base/contact-us", data);
     return res?.data;
   } catch (error: any) {
-    console.log("object", error);
+    console.log("contact Error", error);
     throw new Error(`Contact Error : ${error?.message}`);
   }
 };
