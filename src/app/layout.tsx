@@ -40,7 +40,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <WebsiteInfoProvider initialData={websiteData}>
+        <WebsiteInfoProvider initialData={websiteData || ""}>
           <TanStackProvider>
             <Navbar />
             {children}

@@ -42,7 +42,9 @@ export const getSingleService = async (id: number) => {
 
 export const getWebsite = async () => {
   try {
-    const response = await fetch(`${ENV_CONFIG.baseApi}/base/website-data`, FETCH_OPTIONS);
+    const response = await fetch(`${ENV_CONFIG.baseApi}/base/website-data`, {
+      cache: "no-store",
+    });
 
     if (!response.ok) {
       throw new Error(`Failed to fetch website data. HTTP status: ${response.status}`);

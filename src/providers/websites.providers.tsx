@@ -17,7 +17,7 @@ const WebsiteInfoContext = createContext<WebsiteInfoContextType>({
 });
 
 export const WebsiteInfoProvider = ({ children, initialData }: { children: ReactNode; initialData: any }) => {
-  const [websiteInfo, setWebsiteInfo] = useState(initialData?.data);
+  const [websiteInfo, setWebsiteInfo] = useState(initialData?.data || "");
   const loading = websiteInfo === null;
 
   return <WebsiteInfoContext.Provider value={{ websiteInfo, loading, setWebsiteInfo }}>{children}</WebsiteInfoContext.Provider>;
