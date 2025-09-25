@@ -1,19 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import SectionHeader from "@/shared/components/SectionHeader";
 import { img } from "@/shared/constant/imgExport";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { RiServiceFill } from "react-icons/ri";
 import Skeleton from "react-loading-skeleton";
 
 const BlogSection = async ({ blogs, HomeSection7 }: { blogs: any; HomeSection7: any }) => {
-  const { subtitle, title, description } = HomeSection7 || {};
+  const {title, description } = HomeSection7 || {};
 
   return (
     <div className="max-w-screen-xl mx-auto py-28 px-2 ">
       <div className="flex items-center justify-center flex-col space-y-5">
-        <SectionHeader text={subtitle} icon={RiServiceFill} />
+       
         <p className="text-5xl font-bold  leading-tight">{title || <Skeleton />}</p>
         <div className="text-gray-500 lg:w-[50%] text-center" dangerouslySetInnerHTML={{ __html: description }}></div>
       </div>

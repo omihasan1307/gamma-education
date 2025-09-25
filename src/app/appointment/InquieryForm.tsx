@@ -4,11 +4,14 @@ import { useContact } from "@/hooks/post/post.hook";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 export type TInquiry = {
+  name: string;
   phone: string;
   email: string;
-  subject: string;
+  destination: string;
   message: string;
 };
+
+const destinations = ["Study in Australia", "Study in Malaysia", "Study in Canada", "Study in UK"];
 
 const InquieryForm = () => {
   const { mutate: handleContact, isPending } = useContact();
@@ -30,17 +33,20 @@ const InquieryForm = () => {
   return (
     <div className="px-2">
       <form onSubmit={handleSubmit(onSubmit)} className=" space-y-8">
+        {/* name */}
         <div className="w-full">
           <input
-            {...register("phone", { required: "Name is required" })}
+            {...register("name", { required: "Name is required" })}
             type="text"
             placeholder="Your Name"
             className={`px-4 py-4 rounded-xl border focus:outline-none w-full duration-300 hover:duration-300 ${
-              errors.phone ? "border-red-500" : "hover:border-baseColor"
+              errors.name ? "border-red-500" : "hover:border-baseColor"
             }`}
           />
-          {errors.phone && <p className="text-red-500 text-sm pt-1">{errors.phone.message}</p>}
+          {errors.name && <p className="text-red-500 text-sm pt-1">{errors.name.message}</p>}
         </div>
+
+        {/* email */}
         <div className="w-full">
           <input
             {...register("email", {
@@ -58,21 +64,45 @@ const InquieryForm = () => {
           />
           {errors.email && <p className="text-red-500 text-sm pt-1">{errors.email.message}</p>}
         </div>
-        <div>
+
+        {/* phone */}
+        <div className="w-full">
           <input
-            {...register("subject", { required: "subject is required" })}
-            type="text"
-            placeholder="Your Project subject"
+            {...register("phone", { required: "Mobile is required" })}
+            type="number"
+            placeholder="Your Mobile Number"
             className={`px-4 py-4 rounded-xl border focus:outline-none w-full duration-300 hover:duration-300 ${
-              errors.subject ? "border-red-500" : "hover:border-baseColor"
+              errors.phone ? "border-red-500" : "hover:border-baseColor"
             }`}
           />
-          {errors.subject && <p className="text-red-500 text-sm pt-1">{errors.subject.message}</p>}
+          {errors.phone && <p className="text-red-500 text-sm pt-1">{errors.phone.message}</p>}
         </div>
+
+        {/* Destination */}
+        <div>
+          <select
+            {...register("destination", { required: "Destination is required" })}
+            className={`px-4 py-4 rounded-xl border focus:outline-none w-full duration-300 hover:duration-300 bg-white text-gray-700
+      ${errors.destination ? "border-red-500" : "hover:border-baseColor"}`}
+            defaultValue="">
+            <option value="" disabled>
+              Select your destination
+            </option>
+
+            {destinations.map((country, index) => (
+              <option key={index} value={country}>
+                {country}
+              </option>
+            ))}
+          </select>
+
+          {errors.destination && <p className="text-red-500 text-sm pt-1">{errors.destination.message}</p>}
+        </div>
+        {/* Comment */}
         <div>
           <textarea
             {...register("message", { required: "Message is required" })}
-            placeholder="Details Project"
+            placeholder="Comment"
             className={`px-4 py-4 rounded-xl border focus:outline-none w-full duration-300 hover:duration-300 ${
               errors.message ? "border-red-500" : "hover:border-baseColor"
             }`}

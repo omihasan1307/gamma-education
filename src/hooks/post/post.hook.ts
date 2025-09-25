@@ -8,10 +8,10 @@ export const useInquiry = () => {
     mutationKey: ["INQUIRY"],
     mutationFn: async (data: any) => await inquiryToDb(data),
     onSuccess: (data) => {
-      toast.success(` ${data?.data}! Inquiry added successfully`);
+      toast.success(` ${data?.data}! appointment added successfully`);
     },
     onError: (data) => {
-      toast.error(data?.message || "Inquiry added Failed");
+      toast.error(data?.message || "appointment added Failed");
     },
   });
 };

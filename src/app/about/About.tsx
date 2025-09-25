@@ -10,8 +10,6 @@ const AboutSection = ({ title, image, subtitle, description }: any) => {
         <p className="tracking-widest font-bold text-baseColor uppercase ">{title}</p>
         <p className="text-2xl lg:text-4xl font-semibold ">{subtitle}</p>
         <div className="text-gray-400 " dangerouslySetInnerHTML={{ __html: description || "No Data" }}></div>
-
-        <button className=" uppercase tracking-widest px-6 py-3 rounded-lg bg-gradient-custom text-white ">DisCover More</button>
       </div>
     </div>
   );

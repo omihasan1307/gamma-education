@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import FaqsSection from "./FaqsSection";
 
 export const metadata: Metadata = {
-  title: "Faqs || Binary Hooks",
-  description: "Faqs || Binary Hooks",
+  title: "Faqs || Gamma Education",
+  description: "Faqs || Gamma Education",
 };
 
 const Faqs = () => {

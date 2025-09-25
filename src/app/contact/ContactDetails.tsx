@@ -2,69 +2,111 @@
 "use client";
 
 import Link from "next/link";
-import { FaMapMarkerAlt, FaRegPaperPlane, FaFacebookF, FaLinkedinIn, FaEnvelope } from "react-icons/fa";
+import {
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaFacebookF,
+  FaLinkedinIn,
+  FaInstagram,
+} from "react-icons/fa";
 
 import { useWebsiteInfo } from "@/providers/websites.providers";
 import LoadingComponent from "@/shared/components/LoadingComponent";
 
 const ContactDetails = () => {
   const { websiteInfo, loading }: any = useWebsiteInfo();
-  const { support_email, secondary_business_address, phone, instagram, linkedin, facebook } = websiteInfo?.owner_info || {};
+  const {
+    support_email,
+    secondary_business_address,
+    phone,
+    instagram,
+    linkedin,
+    facebook,
+  } = websiteInfo?.owner_info || {};
 
-  if (loading) {
-    return <LoadingComponent />;
-  }
+  if (loading) return <LoadingComponent />;
 
   return (
-    <div>
-      <div className="mt-10">
-        <h2 className="text-2xl lg:text-3xl font-bold  text-left">GET CLOSER</h2>
-
-        <div className="p-1 my-5 bg-gradient-custom rounded-lg w-48"></div>
-
-        <p className="my-10">
-          Have a project in mind or need assistance? Get in touch with Binary Hooks today! Let&apos;s collaborate to bring your ideas to life with
-          innovative and tailored solutions.
+    <section className="py-12 px-4 sm:px-6 lg:px-8">
+      {/* Heading */}
+      <div className="text-center mb-12">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
+          Get Closer
+        </h2>
+        <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          Have a project in mind or need assistance? Let’s collaborate to bring
+          your ideas to life with innovative and tailored solutions.
         </p>
+      </div>
 
-        <div className="grid lg:grid-cols-2 lg:place-content-center lg:gap-10 my-10">
-          <div className="flex items-center mb-10 lg:mb-12">
-            <FaMapMarkerAlt className="text-basicColor w-[40px] h-[40px]" />
-
-            <div className="ms-5">
-              <p className=" text-xl font-bold mb-2">LOCATION</p>
-              <p>{secondary_business_address}</p>
-            </div>
+      {/* Contact Cards */}
+      <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
+        {/* Location */}
+        <div className="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-xl transition-shadow">
+          <div className="flex justify-center mb-4">
+            <FaMapMarkerAlt className="text-basicColor w-12 h-12" />
           </div>
-
-          <div className="flex items-center lg:mb-16 mb-10">
-            <FaRegPaperPlane className="text-basicColor w-[40px] h-[40px]" />
-            <div className="ms-5">
-              <p className=" text-xl font-bold mb-2">EMAIL</p>
-              <p>{support_email}</p>
-              <p>{phone}</p>
-            </div>
-          </div>
+          <h3 className="text-xl font-semibold mb-2">Location</h3>
+          <p className="text-gray-600">{secondary_business_address}</p>
         </div>
 
-        <div className="p-1 bg-gradient-custom rounded-lg"></div>
-
-        <div className="my-6 grid lg:grid-cols-3 lg:place-content-center items-center">
-          <div className="col-span-2 text-2xl  font-bold">OUR SOCIAL MEDIA</div>
-          <div className="flex space-x-10 lg:space-x-5">
-            <Link href={facebook} target="_blank">
-              <FaFacebookF className=" w-10 h-10  p-2 rounded bg-[#0F6EF9] text-white " />
-            </Link>
-            <Link href={linkedin} target="_blank">
-              <FaLinkedinIn className=" w-10 h-10 border p-2 rounded bg-[#0A66C2] text-white " />
-            </Link>
-            <Link href={instagram} target="_blank">
-              <FaEnvelope className="w-10 h-10 p-2 rounded  bg-gradient-to-r from-[#0F6EF9] to-[#0A66C2] text-white" />
-            </Link>
+        {/* Email */}
+        <div className="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-xl transition-shadow">
+          <div className="flex justify-center mb-4">
+            <FaEnvelope className="text-basicColor w-12 h-12" />
           </div>
+          <h3 className="text-xl font-semibold mb-2">Email</h3>
+          <p className="text-gray-600 break-all">{support_email}</p>
+        </div>
+
+        {/* Phone */}
+        <div className="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-xl transition-shadow">
+          <div className="flex justify-center mb-4">
+            <FaPhoneAlt className="text-basicColor w-12 h-12" />
+          </div>
+          <h3 className="text-xl font-semibold mb-2">Phone</h3>
+          <p className="text-gray-600">{phone}</p>
         </div>
       </div>
-    </div>
+
+      {/* Divider */}
+      <div className="my-12 h-[1px] bg-gradient-to-r from-transparent via-basicColor/40 to-transparent max-w-4xl mx-auto" />
+
+      {/* Social Media */}
+      <div className="text-center">
+        <h3 className="text-2xl font-bold mb-6">Connect With Us</h3>
+        <div className="flex justify-center space-x-6">
+          {facebook && (
+            <Link
+              href={facebook}
+              target="_blank"
+              className="group p-3 rounded-full bg-[#1877F2] text-white hover:scale-110 transition"
+            >
+              <FaFacebookF className="w-5 h-5" />
+            </Link>
+          )}
+          {linkedin && (
+            <Link
+              href={linkedin}
+              target="_blank"
+              className="group p-3 rounded-full bg-[#0A66C2] text-white hover:scale-110 transition"
+            >
+              <FaLinkedinIn className="w-5 h-5" />
+            </Link>
+          )}
+          {instagram && (
+            <Link
+              href={instagram}
+              target="_blank"
+              className="group p-3 rounded-full bg-gradient-to-tr from-pink-500 via-red-500 to-yellow-500 text-white hover:scale-110 transition"
+            >
+              <FaInstagram className="w-5 h-5" />
+            </Link>
+          )}
+        </div>
+      </div>
+    </section>
   );
 };
 

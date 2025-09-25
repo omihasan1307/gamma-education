@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useState } from "react";
-import { MdPolicy } from "react-icons/md";
 
 import { useWebsiteInfo } from "@/providers/websites.providers";
 import LoadingComponent from "@/shared/components/LoadingComponent";
-import SectionHeader from "@/shared/components/SectionHeader";
 import { ELanguage } from "@/shared/enums/language.enum";
 
 const TermsConditionSection = () => {
@@ -22,9 +20,8 @@ const TermsConditionSection = () => {
   return (
     <div>
       <div className="bg-gradient-custom-light dark:bg-gradient-custom-dark flex items-center text-center justify-center py-10 px-5 flex-col space-y-5">
-        <SectionHeader text="Terms & Conditions" icon={MdPolicy} />
         <div className="text-5xl leading-tight">
-          BinaryHooks <span className="font-bold ">Terms & Conditions</span>
+          Gamma <span className="font-bold ">Terms & Conditions</span>
           <div
             className="text-gray-500 lg:w-full text-sm text-center pt-5"
             dangerouslySetInnerHTML={{ __html: privacy_and_policy_page?.PrivacyAndPolicySection2?.description }}></div>

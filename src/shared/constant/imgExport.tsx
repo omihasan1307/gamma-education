@@ -1,3 +1,5 @@
+import study from "../../../assets/study-abroad.png";
+import GammaImage from "../../../assets/gamma.jpg";
 import Logo from "../../../assets/logo.png";
 import LogoText from "../../../assets/logotext.png";
 import notfound from "../../../assets/notFound.png";
@@ -14,4 +16,6 @@ export const img = {
   LogoText,
   notfound,
   noImage,
+  GammaImage,
+  study,
 };

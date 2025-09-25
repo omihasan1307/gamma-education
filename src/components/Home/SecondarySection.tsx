@@ -1,11 +1,25 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
+import TeamMemberPage from "@/app/about/TeamMember";
+import { useWebsiteInfo } from "@/providers/websites.providers";
+import LoadingComponent from "@/shared/components/LoadingComponent";
 import React from "react";
 
 const SecondarySection = ({ HomeSection2 }: any) => {
   const items = HomeSection2?.items || [];
 
+  const { websiteInfo, loading }: any = useWebsiteInfo();
+
+  if (loading) {
+    return <LoadingComponent />;
+  }
+
+  const { AboutSection2 } = websiteInfo?.generics?.about_page || {};
+  const { items: memberItems } = AboutSection2 || {};
+
+
   return (
-    <div className="max-w-screen-xl mx-auto text-center px-2">
+    <div className="max-w-screen-xl mx-auto text-center px-2 pb-10">
       <div className="grid gap-10 md:grid-cols-3">
         {items?.map((stage: any, index: number) => (
           <div key={index} className="flex items-center gap-5 hover:scale-105 duration-300 group">
@@ -25,6 +39,8 @@ const SecondarySection = ({ HomeSection2 }: any) => {
           </div>
         ))}
       </div>
+
+      <TeamMemberPage items={memberItems} />
     </div>
   );
 };

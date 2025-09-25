@@ -26,8 +26,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Binary Hooks",
-  description: "Binary Hooks",
+  title: "Gamma Education",
+  description: "Gamma Education",
 };
 
 export default async function RootLayout({

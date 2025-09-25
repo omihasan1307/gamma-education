@@ -1,22 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { IoBagOutline } from "react-icons/io5";
-import Skeleton from "react-loading-skeleton";
-
-import SectionHeader from "@/shared/components/SectionHeader";
 
 const CollaborateSection = ({ HomeSection4 }: { HomeSection4: any }) => {
-  const { subtitle, title, description } = HomeSection4 || {};
+  // const { subtitle, title, description } = HomeSection4 || {};
 
   return (
     <div className="bg-white">
-      <div className="max-w-screen-xl mx-auto py-28 text-center px-2 ">
-        <div className="flex items-center justify-center flex-col space-y-5">
+      <div className="max-w-screen-xl mx-auto text-center px-2 ">
+        {/* <div className="flex items-center justify-center flex-col space-y-5">
           <SectionHeader text={subtitle} icon={IoBagOutline} />
           <p className="text-5xl font-bold  leading-tight  lg:w-[60%]">{title || <Skeleton />}</p>
           <div className="text-gray-500 lg:w-[50%]" dangerouslySetInnerHTML={{ __html: description }}></div>
-        </div>
+        </div> */}
 
-        <div className="mt-20 grid gap-5 md:grid-cols-3">
+        <div className="my-20 grid gap-5 md:grid-cols-3">
           {HomeSection4?.items?.map((stage: any, index: number) => (
             <div
               key={index}

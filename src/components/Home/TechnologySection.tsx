@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import SectionHeader from "@/shared/components/SectionHeader";
 import Slider from "react-slick";
 import Image from "next/image";
-import { GrTechnology } from "react-icons/gr";
 import { img } from "@/shared/constant/imgExport";
+import Link from "next/link";
 
 const TechnologySection = ({ HomeSection3 }: any) => {
   const settings = {
@@ -32,27 +31,26 @@ const TechnologySection = ({ HomeSection3 }: any) => {
   };
 
   return (
-    <div className="py-28 text-center px-2  dark:bg-gradient-custom-dark">
-      <div className="flex items-center justify-center flex-col space-y-5">
-        <SectionHeader text="Innovative Solutions" icon={GrTechnology} />
+    <div className="text-center px-2  max-w-screen-xl mx-auto">
+      {/* <div className="flex items-center justify-center flex-col space-y-5">
         <p className="text-5xl font-bold leading-tight">Leading Technologies of the Era</p>
         <p className="text-gray-500">
           Empowering businesses with cutting-edge technology solutions, from startups to established enterprises, to fuel innovation and growth.
         </p>
-      </div>
+      </div> */}
 
       <div className="slider-container pt-10">
         <Slider {...settings}>
           {HomeSection3?.items?.map((item: any, index: number) => (
-            <div key={index} className="p-2">
-              <div className="rounded-md py-6">
+            <Link href={`/destination/usa`} key={index} className="p-2 ">
+              <div className="rounded-md py-6 ">
                 {item?.image ? (
                   <Image
                     src={item?.image || img.noImage}
                     alt={item?.title || "Technology"}
                     width={200}
                     height={200}
-                    className="mx-auto h-[200px] w-[200px] hover:scale-105 duration-300"
+                    className="mx-auto h-[200px] w-[200px] hover:scale-105 duration-300 "
                   />
                 ) : (
                   <div
@@ -61,9 +59,14 @@ const TechnologySection = ({ HomeSection3 }: any) => {
                 )}
                 <h3 className="text-xl font-bold mt-4">{item.title}</h3>
               </div>
-            </div>
+            </Link>
           ))}
         </Slider>
+      </div>
+      <div className="my-5">
+        <Link href="/appointment">
+          <button className="hidden lg:inline-block px-10 py-2 rounded-lg bg-gradient-custom text-white font-semibold me-3">Book Appointment</button>
+        </Link>
       </div>
     </div>
   );

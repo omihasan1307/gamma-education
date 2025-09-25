@@ -11,8 +11,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #000000;
   }
 }
 
@@ -51,7 +51,7 @@ body {
 }
 
 .bg-Section {
-  background-image: url(../../assets/bg-header.png);
+  background-image: url(../../assets/heroSection.webp);
   background-position: top;
   background-repeat: no-repeat;
   background-size: contain;

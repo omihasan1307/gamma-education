@@ -17,8 +17,8 @@ const BottomInvitationSection = () => {
             <br /> of your website with only a few clicks
           </p>
 
-          <Link href={"/inquiry"}>
-            <button className="mt-8 w-full lg:w-52 px-6 py-3 rounded-lg bg-gradient-custom text-white font-semibold">Let&apos;s Collaborate</button>
+          <Link href={"/appointment"}>
+            <button className="mt-8 w-full lg:w-52 px-6 py-3 rounded-lg bg-gradient-custom text-white font-semibold">Book Appointment</button>
           </Link>
         </div>
       </div>

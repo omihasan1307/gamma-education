@@ -2,8 +2,8 @@ import PrivacyPolicySection from "./PrivacyPolicySection";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy || Binary Hooks",
-  description: "Privacy Policy || Binary Hooks",
+  title: "Privacy Policy || Gamma Education",
+  description: "Privacy Policy || Gamma Education",
 };
 
 const PrivacyPolicyPage = async () => {

@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import TermsConditionSection from "./TermsConditionSection";
 
 export const metadata: Metadata = {
-  title: "Terms Conditions || Binary Hooks",
-  description: "Terms Conditions || Binary Hooks",
+  title: "Terms Conditions || Gamma Education",
+  description: "Terms Conditions || Gamma Education",
 };
 
 const TermsAndCondition = () => {
