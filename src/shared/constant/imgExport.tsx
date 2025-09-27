@@ -1,3 +1,4 @@
+import heroImg from "../../../assets/heroSection.webp";
 import study from "../../../assets/study-abroad.png";
 import GammaImage from "../../../assets/gamma.jpg";
 import Logo from "../../../assets/logo.png";
@@ -18,4 +19,5 @@ export const img = {
   noImage,
   GammaImage,
   study,
+  heroImg,
 };

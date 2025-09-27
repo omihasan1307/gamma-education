@@ -50,12 +50,12 @@ body {
   background: #a1a1a1;
 }
 
-.bg-Section {
+/* .bg-Section {
   background-image: url(../../assets/heroSection.webp);
   background-position: top;
   background-repeat: no-repeat;
   background-size: contain;
-}
+} */
 
 .invitation-section {
   background-image: url(../../assets/desk.jpg);
