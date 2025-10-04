@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { getServiceList } from "@/actions/get/get.action";
 import SectionHeader from "@/shared/components/SectionHeader";
-import { serviceLists } from "@/shared/constant/data";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { FaServicestack } from "react-icons/fa";
 import { MdArrowOutward } from "react-icons/md";
 
@@ -13,39 +12,46 @@ export const metadata: Metadata = {
   description: "Services | Gamma Education",
 };
 
-
 const ServicesPage = async () => {
-  // const { data: serviceList } = await getServiceList();
+  const { data: serviceList } = await getServiceList();
+
+  console.log(serviceList);
 
   return (
-    <div>
+    <div className="pb-20">
       {/* Header */}
-      <div className="flex items-center text-center justify-center flex-col space-y-5">
+      <div className="flex flex-col items-center text-center space-y-5">
         <SectionHeader
           text="Our Services"
           icon={FaServicestack}
-          description="Explore our wide range of solutions designed to help your business grow and succeed. "
+          description="Explore our wide range of professional services designed to support your success."
         />
       </div>
 
-      {/* Section */}
-      <div className="max-w-screen-xl mx-auto mt-20 pb-20 grid gap-10 md:grid-cols-3 text-center px-2">
-        {serviceLists?.map((service: any) => (
-          <div key={service.id} className="group duration-500 rounded-[18px] shadow-lg hover:scale-105 hover:shadow-2xl ">
-            <div className="h-full w-full px-5 py-10 rounded-[16px] group-hover:shadow-lg opacity-80 group-hover:opacity-100 duration-300">
-              <div className="flex justify-center ">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  width={96}
-                  height={96}
-                  className="rounded object-cover w-full h-52 group-hover:-rotate-6 duration-300"
-                />
-              </div>
-              <h2 className="text-2xl font-semibold pt-5 pb-2">{service.title}</h2>
+      {/* Services Grid */}
+      <div className="max-w-screen-xl mx-auto mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3 px-4">
+        {serviceList?.map((service: any) => (
+          <div key={service.id} className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+            {/* Service Image */}
+            <div className="relative w-full h-56 overflow-hidden">
+              <Image
+                src={service.featured_image}
+                alt={service.title}
+                fill
+                className="object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
 
-              <Link href={`/service/${service?.id}`} className="text-basicColor flex justify-center font-semibold p-2 me-2 hover:text- duration-300">
-                Read more about this <MdArrowOutward />
+            {/* Content */}
+            <div className="p-6">
+              <div className="text-4xl mb-3">{service.icon}</div>
+              <h2 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-basicColor transition">{service.title}</h2>
+              <p className="text-gray-600 text-sm mb-4">{service.subtitle}</p>
+
+              <Link
+                href={`/service/${service.id}`}
+                className="text-basicColor font-medium inline-flex items-center gap-1 hover:gap-2 transition-all duration-300">
+                Read more about this <MdArrowOutward className="text-lg" />
               </Link>
             </div>
           </div>
@@ -56,45 +62,3 @@ const ServicesPage = async () => {
 };
 
 export default ServicesPage;
-
-
-
-
-// const ServicesPage = async () => {
-//   // const { data: serviceList } = await getServiceList();
-
-//   return (
-//     <div>
-//       {/* Header */}
-//       <div className="flex items-center text-center justify-center flex-col space-y-5">
-//         <SectionHeader
-//           text="Our Services"
-//           icon={FaServicestack}
-//           description="Explore our wide range of solutions designed to help your business grow and succeed. "
-//         />
-//       </div>
-
-//       {/* Section */}
-//       <div className="grid gap-10 md:grid-cols-3 text-center px-2">
-//         {serviceLists.map((service) => (
-//           <div key={service.id} className="group duration-500 rounded-[18px] shadow-lg hover:scale-105 hover:shadow-2xl cursor-pointer">
-//             <div className="h-full w-full px-5 py-10 bg-white rounded-[16px] group-hover:shadow-lg opacity-80 group-hover:opacity-100 duration-300">
-//               <div className="flex justify-center">
-//                 <Image
-//                   src={service.image}
-//                   alt={service.title}
-//                   width={96}
-//                   height={96}
-//                   className="rounded-full object-cover w-24 h-24 group-hover:-rotate-12 duration-300"
-//                 />
-//               </div>
-//               <h2 className="text-2xl font-semibold pt-5 pb-2">{service.title}</h2>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ServicesPage;

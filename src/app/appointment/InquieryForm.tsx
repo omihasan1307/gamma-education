@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useContact } from "@/hooks/post/post.hook";
+import { useWebsiteInfo } from "@/providers/websites.providers";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 export type TInquiry = {
@@ -11,9 +12,10 @@ export type TInquiry = {
   message: string;
 };
 
-const destinations = ["Study in Australia", "Study in Malaysia", "Study in Canada", "Study in UK"];
-
 const InquieryForm = () => {
+  const websiteData = useWebsiteInfo();
+  const { featured_guidelines: destinationPage }: any = websiteData?.websiteInfo || {};
+
   const { mutate: handleContact, isPending } = useContact();
 
   const {
@@ -89,9 +91,9 @@ const InquieryForm = () => {
               Select your destination
             </option>
 
-            {destinations.map((country, index) => (
-              <option key={index} value={country}>
-                {country}
+            {destinationPage?.map((item: any) => (
+              <option key={item.id} value={item.id}>
+                {item.title}
               </option>
             ))}
           </select>

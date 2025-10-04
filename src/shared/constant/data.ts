@@ -45,7 +45,7 @@ export const menuItems = [
       { name: "Study in Spain", href: "/destination/spain" },
     ],
   },
-  { id: 1, title: "Services", link: "/service" },
+  { id: 2, title: "Services", link: "/service" },
   { id: 1, title: "Events", link: "/events" },
   { id: 4, title: "About Us", link: "/about" },
   { id: 5, title: "Contact Us", link: "/contact" },

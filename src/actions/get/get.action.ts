@@ -40,6 +40,15 @@ export const getSingleService = async (id: number) => {
   }
 };
 
+export const getSingleDestination = async (id: number) => {
+  try {
+    const response = await axiosInstance.get(`/base/guidelines/${id}/`);
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error?.message || "Failed to fetch Destination item");
+  }
+};
+
 export const getWebsite = async () => {
   try {
     const response = await fetch(`${ENV_CONFIG.baseApi}/base/website-data`, FETCH_OPTIONS);
@@ -55,24 +64,24 @@ export const getWebsite = async () => {
   }
 };
 
-export const getBlogList = async () => {
+export const getEventList = async () => {
   try {
-    const response = await axiosInstance.get(`/blogs/blog/`);
+    const response = await axiosInstance.get(`/projects/project/`);
     return response.data;
   } catch (error: any) {
-    throw new Error(error?.message || "Failed to fetch Blog item");
+    throw new Error(error?.message || "Failed to fetch Event item");
   }
 };
 
-export const getSingleBlog = async (id: number) => {
+export const getSingleEvent = async (id: number) => {
   try {
-    const response = await axiosInstance.get(`/blogs/blog/${id}/`);
+    const response = await axiosInstance.get(`/projects/project/${id}/`);
     if (response?.data) {
       return response.data;
     } else {
-      throw new Error("Failed to fetch Single Project item");
+      throw new Error("Failed to fetch Single Event item");
     }
   } catch (error: any) {
-    throw new Error(error?.message || "Failed to fetch Project item");
+    throw new Error(error?.message || "Failed to fetch Event item");
   }
 };

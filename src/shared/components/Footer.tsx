@@ -3,19 +3,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPhoneAlt } from "react-icons/fa";
-
-import { img } from "../constant/imgExport";
 import { IoLocationSharp } from "react-icons/io5";
 import { HiOutlineMail } from "react-icons/hi";
+import { useWebsiteInfo } from "@/providers/websites.providers";
+import LoadingComponent from "./LoadingComponent";
 
 const Footer = () => {
-  // const { websiteInfo, loading }: any = useWebsiteInfo();
+  const { websiteInfo, loading }: any = useWebsiteInfo();
 
-  // if (loading) {
-  //   return <LoadingComponent />;
-  // }
+  if (loading) {
+    return <LoadingComponent />;
+  }
 
-  // const { instagram, linkedin, facebook } = websiteInfo?.owner_info || {};
+  const { instagram, linkedin, facebook, support_email, phone, business_address, secondary_logo } = websiteInfo?.owner_info || {};
 
   return (
     <div>
@@ -24,20 +24,20 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <Image src={img.GammaImage} alt="Logo" className="w-40" />
+              <Image src={secondary_logo} alt="secondary_logo" className="w-40" width={160} height={40} />
             </div>
 
             <p className="text-gray-200 text-sm leading-relaxed">
               Guiding students to achieve their dreams of studying abroad with trusted counseling, admission support, and visa guidance.
             </p>
             <div className="flex space-x-4 mt-5">
-              <Link href="#" className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition">
+              <Link href={facebook} target="_blank" className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition">
                 <FaFacebookF />
               </Link>
-              <Link href="#" className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition">
+              <Link href={instagram} target="_blank" className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition">
                 <FaInstagram />
               </Link>
-              <Link href="#" className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition">
+              <Link href={linkedin} target="_blank" className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition">
                 <FaLinkedinIn />
               </Link>
             </div>
@@ -74,10 +74,13 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-semibold mb-4">Our Services</h3>
             <ul className="space-y-2 text-gray-200 text-sm">
-              <li>Study Abroad Counseling</li>
-              <li>University Application Assistance</li>
-              <li>Visa Processing Guidance</li>
-              <li>Scholarship Support</li>
+              {websiteInfo?.services?.slice(0, 5)?.map((service: any) => (
+                <li key={service.id}>
+                  <Link href={`/services/${service.id}`} className="hover:text-white transition">
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -87,15 +90,15 @@ const Footer = () => {
             <ul className="space-y-3 text-gray-200 text-sm">
               <li className="flex items-center space-x-2">
                 <IoLocationSharp className="text-white" />
-                <span>Dhaka, Bangladesh</span>
+                <span>{business_address}</span>
               </li>
               <li className="flex items-center space-x-2">
                 <FaPhoneAlt className="text-white" />
-                <span>+880 1234-567890</span>
+                <span>{phone}</span>
               </li>
               <li className="flex items-center space-x-2">
                 <HiOutlineMail className="text-white" />
-                <span>info@gamaedu.com</span>
+                <span>{support_email}</span>
               </li>
             </ul>
           </div>

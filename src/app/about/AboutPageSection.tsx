@@ -3,26 +3,28 @@
 import TeamMemberPage from "./TeamMember";
 import { useWebsiteInfo } from "@/providers/websites.providers";
 import LoadingComponent from "@/shared/components/LoadingComponent";
+import { ENV_CONFIG } from "@/shared/constant/app.constant";
+import { useMemo } from "react";
 
 const AboutPageSection = () => {
-  const { websiteInfo, loading }: any = useWebsiteInfo();
+  const { websiteInfo, loading } = useWebsiteInfo();
 
-  if (loading) {
-    return <LoadingComponent />;
-  }
+  const aboutPage = websiteInfo?.pages?.find((page: any) => page?.slug === "about");
+  const { description , sections} = aboutPage || {};
 
-  const { AboutSection1, AboutSection2 } = websiteInfo?.generics?.about_page || {};
-  // const { title, subtitle, image, description } = AboutSection1 || {};
-  const { description } = AboutSection1 || {};
-  const { items } = AboutSection2 || {};
+  // ✅ Memoize and replace paths deterministically
+  const fixedDescription = useMemo(() => {
+    if (!description) return "No Data";
+    return description.replace(/src="\/media/g, `src="${ENV_CONFIG.baseApi}/media`);
+  }, [description]);
+
+  if (loading) return <LoadingComponent />;
 
   return (
-    <div className="max-w-screen-xl mx-auto py-28 ">
-      {/* <AboutSection title={title} image={image} subtitle={subtitle} description={description} /> */}
-      <div className="text-gray-400 " dangerouslySetInnerHTML={{ __html: description || "No Data" }}></div>
+    <div className="max-w-screen-xl mx-auto py-28">
+      <div className="mx-auto prose prose-lg" dangerouslySetInnerHTML={{ __html: fixedDescription }} />
       <div>
-       
-        <TeamMemberPage items={items} />
+        <TeamMemberPage items={sections} />
       </div>
     </div>
   );

@@ -1,36 +1,80 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
-import { serviceLists } from "@/shared/constant/data";
+import { getEventList, getSingleEvent } from "@/actions/get/get.action";
+import Image from "next/image";
 import Link from "next/link";
-import { FaLongArrowAltRight } from "react-icons/fa";
+import { FaLongArrowAltRight, FaCheckCircle } from "react-icons/fa";
 
-const EventsDetails = async ({ params }: { params: any }) => {
-  const { id } = await params;
+const EventDetails = async ({ params }: { params: { id: string } }) => {
+  const { id } = params;
+  const { data: eventList } = await getEventList();
+  const { data: eventDetails } = await getSingleEvent(parseInt(id, 10));
 
-  const currentId = parseInt(id, 10);
-  const currentService = serviceLists.find((s) => s.id === currentId);
-  const otherServices = serviceLists.filter((s) => s.id !== currentId);
+  if (!eventDetails) return <p className="text-center py-20 text-gray-500">Event not found.</p>;
 
-  if (!currentService) return <p className="text-center py-10">Service not found</p>;
+  const otherEvents = eventList?.filter((e: any) => e.id !== eventDetails.id);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* ✅ Sidebar */}
-        <aside className="order-1 md:order-none">
-          <div className="grid gap-4">
-            {otherServices.map((service) => (
-              <Link
-                key={service.id}
-                href={`/service/${service.id}`}
-                className="flex items-center justify-between border rounded-md p-4 transition hover:shadow-md hover:text-basicColor">
-                <p className="font-medium text-sm sm:text-base">{service.title}</p>
-                <FaLongArrowAltRight className="text-lg" />
-              </Link>
-            ))}
+    <main className="bg-gray-50 min-h-screen">
+      {/* ✅ Hero Section */}
+      <section className="relative h-[400px] w-full">
+        <Image src={eventDetails.featured_image} alt={eventDetails.title} fill className="object-cover brightness-75" priority />
+        <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center px-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">{eventDetails.title}</h1>
+          <p className="text-gray-200 text-lg max-w-2xl">{eventDetails.subtitle}</p>
+          <span className="mt-4 inline-block bg-basicColor text-white text-xs px-4 py-1 rounded-full shadow">
+            {eventDetails.category?.name || "Event"}
+          </span>
+        </div>
+      </section>
+
+      {/* ✅ Main Content */}
+      <section className="max-w-7xl mx-auto px-6 lg:px-8 py-16 grid grid-cols-1 lg:grid-cols-3 gap-12">
+        {/* Left Side - Details */}
+        <article className="lg:col-span-2">
+          {/* Description */}
+          <div
+            className="prose prose-gray max-w-none mb-8 prose-headings:text-gray-900 prose-h2:text-2xl prose-h3:text-xl prose-p:text-gray-700 prose-ul:list-disc prose-li:marker:text-basicColor"
+            dangerouslySetInnerHTML={{ __html: eventDetails.description }}
+          />
+
+          {/* Key Points */}
+          {eventDetails.keypoints?.length > 0 && (
+            <div className="bg-white p-6 rounded-xl shadow-sm border mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-gray-800">Key Takeaways</h3>
+              <ul className="space-y-3">
+                {eventDetails.keypoints.map((point: string, index: number) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <FaCheckCircle className="text-basicColor mt-1" />
+                    <span className="text-gray-700">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </article>
+
+        {/* ✅ Sidebar - Other Events */}
+        <aside>
+          <div className="bg-white rounded-xl shadow-sm border p-6">
+            <h2 className="text-lg font-semibold mb-5 border-b pb-3 text-gray-800">Other Events</h2>
+
+            <div className="space-y-4">
+              {otherEvents.map((event: any) => (
+                <Link
+                  key={event.id}
+                  href={`/events/${event.id}`}
+                  className="flex items-center justify-between group border rounded-md p-3 hover:bg-gray-50 transition">
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-gray-800 group-hover:text-basicColor">{event.title}</p>
+                    <p className="text-xs text-gray-500">{event.category?.name}</p>
+                  </div>
+                  <FaLongArrowAltRight className="text-basicColor group-hover:translate-x-1 transition-transform" />
+                </Link>
+              ))}
+            </div>
           </div>
 
-          {/* Book Appointment Button */}
+          {/* Book Appointment CTA */}
           <div className="mt-6">
             <Link href="/appointment">
               <button className="w-full rounded-lg bg-gradient-custom px-6 py-3 text-sm sm:text-base font-semibold text-white shadow hover:opacity-90 transition">
@@ -39,38 +83,9 @@ const EventsDetails = async ({ params }: { params: any }) => {
             </Link>
           </div>
         </aside>
-
-        {/* ✅ Main Content */}
-        <main className="md:col-span-1 lg:col-span-2">
-          <h1 className="text-2xl sm:text-3xl font-bold mb-4">{currentService.title}</h1>
-          <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel architecto iste natus odit magni molestias id ipsum eaque! Tenetur
-            praesentium cumque expedita neque repellat ea, aliquam, exercitationem molestias sit ipsum provident illo nobis culpa? Earum doloribus
-            fugit repellendus possimus cupiditate assumenda adipisci ut nam, quasi optio ex, magni quos quaerat repellat officiis, ipsum laudantium
-            quod perferendis beatae accusamus? Placeat vel magnam velit sed fuga explicabo vitae eum? Laborum repudiandae debitis nam perferendis
-            quibusdam nesciunt commodi, neque nostrum corporis consequuntur, molestias est, quo voluptatem vero impedit? Repellendus quisquam,
-            explicabo deleniti illo labore nam minima veritatis. Pariatur tempora ipsum natus voluptatum sit, beatae alias ratione quaerat ex repellat
-            recusandae officia eius dolor voluptate explicabo.
-          </p>
-          {/* <div className="pt-20 text-left" dangerouslySetInnerHTML={{ __html: description }} /> */}
-        </main>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 
-export default EventsDetails;
-
-{
-  /* <section className="pt-8 lg:py-32 bg-center bg-cover">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative text-center ">
-          <h1 className="max-w-2xl mx-auto text-center font-manrope font-bold mb-5 text-5xl leading-[50px]">{title}</h1>
-          <p className="max-w-sm mx-auto text-center text-base font-normal leading-7 text-gray-500 mb-9">{subtitle}</p>
-
-          <div className="flex justify-center">
-            <Image src={featured_image || img.noImage} alt={title} width={800} height={500} />
-          </div>
-          <div className="pt-20 text-left" dangerouslySetInnerHTML={{ __html: description }} />
-        </div>
-      </section> */
-}
+export default EventDetails;

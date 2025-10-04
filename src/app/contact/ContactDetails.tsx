@@ -2,28 +2,18 @@
 "use client";
 
 import Link from "next/link";
-import {
-  FaMapMarkerAlt,
-  FaPhoneAlt,
-  FaEnvelope,
-  FaFacebookF,
-  FaLinkedinIn,
-  FaInstagram,
-} from "react-icons/fa";
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 
 import { useWebsiteInfo } from "@/providers/websites.providers";
 import LoadingComponent from "@/shared/components/LoadingComponent";
 
 const ContactDetails = () => {
   const { websiteInfo, loading }: any = useWebsiteInfo();
-  const {
-    support_email,
-    secondary_business_address,
-    phone,
-    instagram,
-    linkedin,
-    facebook,
-  } = websiteInfo?.owner_info || {};
+  const { support_email, secondary_business_address, phone, instagram, linkedin, facebook } = websiteInfo?.owner_info || {};
+
+  const contactPage = websiteInfo?.pages?.find((page: any) => page?.slug === "contact");
+
+  const { title, description } = contactPage || {};
 
   if (loading) return <LoadingComponent />;
 
@@ -31,13 +21,8 @@ const ContactDetails = () => {
     <section className="py-12 px-4 sm:px-6 lg:px-8">
       {/* Heading */}
       <div className="text-center mb-12">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
-          Get Closer
-        </h2>
-        <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-          Have a project in mind or need assistance? Let’s collaborate to bring
-          your ideas to life with innovative and tailored solutions.
-        </p>
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">{title}</h2>
+        <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto" dangerouslySetInnerHTML={{ __html: description || "No Data" }}></p>
       </div>
 
       {/* Contact Cards */}
@@ -78,20 +63,12 @@ const ContactDetails = () => {
         <h3 className="text-2xl font-bold mb-6">Connect With Us</h3>
         <div className="flex justify-center space-x-6">
           {facebook && (
-            <Link
-              href={facebook}
-              target="_blank"
-              className="group p-3 rounded-full bg-[#1877F2] text-white hover:scale-110 transition"
-            >
+            <Link href={facebook} target="_blank" className="group p-3 rounded-full bg-[#1877F2] text-white hover:scale-110 transition">
               <FaFacebookF className="w-5 h-5" />
             </Link>
           )}
           {linkedin && (
-            <Link
-              href={linkedin}
-              target="_blank"
-              className="group p-3 rounded-full bg-[#0A66C2] text-white hover:scale-110 transition"
-            >
+            <Link href={linkedin} target="_blank" className="group p-3 rounded-full bg-[#0A66C2] text-white hover:scale-110 transition">
               <FaLinkedinIn className="w-5 h-5" />
             </Link>
           )}
@@ -99,8 +76,7 @@ const ContactDetails = () => {
             <Link
               href={instagram}
               target="_blank"
-              className="group p-3 rounded-full bg-gradient-to-tr from-pink-500 via-red-500 to-yellow-500 text-white hover:scale-110 transition"
-            >
+              className="group p-3 rounded-full bg-gradient-to-tr from-pink-500 via-red-500 to-yellow-500 text-white hover:scale-110 transition">
               <FaInstagram className="w-5 h-5" />
             </Link>
           )}
