@@ -1,16 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
-import { img } from "@/shared/constant/imgExport";
 import Image from "next/image";
 import Slider from "react-slick";
-
-// ✅ Slides
-export const heroSection = [
-  { id: 1, image: img.heroImg },
-  { id: 2, image: img.study },
-  { id: 3, image: img.heroImg },
-];
 
 const HeroSection = ({ HomeSection1 }: { HomeSection1?: any }) => {
   const settings = {
@@ -41,12 +32,11 @@ const HeroSection = ({ HomeSection1 }: { HomeSection1?: any }) => {
     ],
   };
 
-  console.log(HomeSection1);
 
   return (
-    <div className="">
+    <div>
       <Slider {...settings}>
-        {heroSection.map((item) => (
+        {HomeSection1.map((item: any) => (
           <div key={item.id} className="relative w-full h-[700px]">
             {/* ✅ Show full width on large screens, constrained height on mobile */}
             <div className="relative w-full aspect-[16/9] lg:aspect-auto lg:h-[600px] xl:h-[700px]">

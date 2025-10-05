@@ -1,36 +1,47 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 import { Suspense } from "react";
 import { BeatLoader } from "react-spinners";
 
 import BottomInvitationSection from "@/components/Home/BottomInvitationSection";
-import CollaborateSection from "@/components/Home/CollaborateSection";
 import HeroSection from "@/components/Home/HeroSection";
 import SecondarySection from "@/components/Home/SecondarySection";
 import TechnologySection from "@/components/Home/TechnologySection";
 import ServicesSection from "@/components/Home/ServicesSection";
+import { useWebsiteInfo } from "@/providers/websites.providers";
+import TeamMemberPage from "./about/TeamMember";
+import LoadingComponent from "@/shared/components/LoadingComponent";
 
-import { getWebsite } from "@/actions/get/get.action";
+export default function Home() {
+  const { websiteInfo, loading } = useWebsiteInfo();
 
-export default async function Home() {
-  const { data: websiteData } = await getWebsite();
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { services, featured_guidelines } = websiteInfo || {};
 
-  const {HomeSection1, HomeSection2, HomeSection3, HomeSection4, HomeSection5 } = websiteData?.generics?.home_page || {};
-  const { services } = websiteData || {};
+  const aboutPage = websiteInfo?.pages?.find((page: any) => page?.slug === "about");
+  const homePage = websiteInfo?.pages?.find((page: any) => page?.slug === "home");
+  const { sections } = aboutPage || {};
+  const { sections: homeSection } = homePage || {};
+  const heroSection = homeSection?.find((page: any) => page?.name === "main_hero");
+  const featuresSection = homeSection?.find((page: any) => page?.name === "features_section");
+
+
+
+  if (loading) return <LoadingComponent />;
 
   return (
     <div className="bg-Section overflow-hidden">
       <Suspense fallback={<BeatLoader color="#0291FA" loading={true} size={5} speedMultiplier={2} className="max-w-screen-2xl mx-auto" />}>
-
-        <HeroSection HomeSection1={HomeSection1} />
-        <TechnologySection HomeSection3={HomeSection3} />
-        <CollaborateSection HomeSection4={HomeSection4} />
+        <HeroSection HomeSection1={heroSection?.items} />
+        <TechnologySection HomeSection3={featured_guidelines} />
+        {/* <CollaborateSection HomeSection4={HomeSection4} /> */}
         <BottomInvitationSection />
-        <ServicesSection services={services} HomeSection5={HomeSection5} />
-        <SecondarySection HomeSection2={HomeSection2} />
+        <ServicesSection services={services} />
+        <SecondarySection HomeSection2={featuresSection?.items} />
         {/* <PortfolioSection projects={projects} HomeSection6={HomeSection6} /> */}
         {/* <BlogSection blogs={blogs} HomeSection7={HomeSection7} /> */}
-        {/* <TeamMemberPage items="items" /> */}
+        <div className="max-w-screen-xl mx-auto pb-28 ">
+          <TeamMemberPage items={sections} />
+        </div>
       </Suspense>
     </div>
   );

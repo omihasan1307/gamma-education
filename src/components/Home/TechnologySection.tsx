@@ -32,17 +32,10 @@ const TechnologySection = ({ HomeSection3 }: any) => {
 
   return (
     <div className="text-center px-2  max-w-screen-xl mx-auto">
-      {/* <div className="flex items-center justify-center flex-col space-y-5">
-        <p className="text-5xl font-bold leading-tight">Leading Technologies of the Era</p>
-        <p className="text-gray-500">
-          Empowering businesses with cutting-edge technology solutions, from startups to established enterprises, to fuel innovation and growth.
-        </p>
-      </div> */}
-
       <div className="slider-container pt-10">
         <Slider {...settings}>
-          {HomeSection3?.items?.map((item: any, index: number) => (
-            <Link href={`/destination/usa`} key={index} className="p-2 ">
+          {HomeSection3?.map((item: any, index: number) => (
+            <Link href={`/destination/${item.id}`} key={index} className="p-2 ">
               <div className="rounded-md py-6 ">
                 {item?.image ? (
                   <Image

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaLongArrowAltRight, FaCheckCircle } from "react-icons/fa";
 
-const EventDetails = async ({ params }: { params: { id: string } }) => {
+const EventDetails = async ({ params }: any) => {
   const { id } = params;
   const { data: eventList } = await getEventList();
   const { data: eventDetails } = await getSingleEvent(parseInt(id, 10));

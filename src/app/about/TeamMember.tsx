@@ -5,7 +5,7 @@ import Image from "next/image";
 const TeamMemberPage = ({ items }: { items: any }) => {
   return (
     <div>
-      <div className="flex items-center justify-center flex-col space-y-1 mt-28">
+      <div className="flex items-center justify-center flex-col space-y-1 mt-10">
         <p className="text-5xl font-bold leading-tight">{items?.[0]?.name}</p>
         <div className="text-gray-500" dangerouslySetInnerHTML={{ __html: items?.[0]?.description }} />
       </div>

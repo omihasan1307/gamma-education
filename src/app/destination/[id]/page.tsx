@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // app/destination/[id]/page.tsx
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -5,13 +6,7 @@ import Link from "next/link";
 import DestinationSection from "./DestinationSection";
 import { getSingleDestination } from "@/actions/get/get.action";
 
-interface DestinationPageProps {
-  params: {
-    id: string;
-  };
-}
-
-const DestinationCountry = async ({ params }: DestinationPageProps) => {
+const DestinationCountry = async ({ params }: any) => {
   const { id } = params;
   if (!id) return notFound();
 

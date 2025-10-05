@@ -81,6 +81,7 @@ const Navbar = () => {
 
     if (pages?.length) {
       [...pages]
+        .filter((page) => page.name.toLowerCase() !== "home" && page.slug.toLowerCase() !== "home")
         .sort((a, b) => a.order - b.order)
         .forEach((page) =>
           menuItems.push({
