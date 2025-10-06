@@ -27,7 +27,7 @@ export const WebsiteInfoProvider = ({ children, initialData }: { children: React
   const fetchWebsiteInfo = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`${ENV_CONFIG.baseApi}/base/website-data/base/website-data`, {
+      const res = await fetch(`${ENV_CONFIG.baseApi}/base/website-data`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
         cache: "no-store", // ensures always fresh data
