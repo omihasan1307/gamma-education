@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #01acd6;
+  --secondary: #24b15f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* scrollbar styles */
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #bbbbbb;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* .bg-Section {
+  background-image: url(../../assets/heroSection.webp);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+} */
+
+.invitation-section {
+  background-image: url(../../assets/desk.jpg);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.photoText {
+  visibility: hidden;
+}
+
+.photoGallery:hover .photoText {
+  visibility: visible;
+  transition: 2s;
+}
+
+.photoGallery:hover .teamMemberImg {
+  opacity: 0.3;
+  transition: 1s;
+}
+
+.slider-container {
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,57 @@
+stages:
+  - install
+  - build
+  - deploy
+
+install:
+  image: node:20
+  stage: install
+  script:
+    - npm install
+    - npm install --platform=linux --arch=x64 sharp
+  artifacts:
+    paths:
+      - node_modules
+      - package.json
+      - package-lock.json
+  only:
+    - main
+
+build:
+  image: node:20
+  stage: build
+  dependencies:
+    - install
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - .next
+      - package.json
+      - package-lock.json
+  only:
+    - main
+
+deploy:
+  stage: deploy
+  image: alpine:latest
+  dependencies:
+    - build
+  before_script:
+    - apk add --no-cache lftp
+  script:
+    - echo "Starting FTP deployment for SSR app"
+    - |
+      lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_HOST" -e "
+        set ftp:ssl-allow no;
+        set ssl:verify-certificate no;
+        set ftp:passive-mode yes;
+        
+        # Exclude node_modules and .gitignore during the upload process
+        mirror -R --exclude node_modules . /
+        put package.json -o /package.json
+        put package-lock.json -o /package-lock.json
+        bye;
+      "
+  only:
+    - main
