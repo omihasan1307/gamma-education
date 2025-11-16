@@ -1,36 +1,34 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // app/destination/[id]/page.tsx
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import DestinationSection from "./DestinationSection";
-import { getSingleDestination } from "@/actions/get/get.action";
 
 const DestinationCountry = async ({ params }: any) => {
   const { id } = params;
   if (!id) return notFound();
 
-  const { data: destinationDetails } = await getSingleDestination(parseInt(id, 10));
-  if (!destinationDetails) return notFound();
+  // const { data: destinationDetails } = await getSingleDestination(parseInt(id, 10));
+  // if (!destinationDetails) return notFound();
 
-  const {
-    title,
-    country_display,
-    overview,
-    eligibility_criteria,
-    language_requirements,
-    financial_requirements,
-    application_process,
-    deadline_information,
-    visa_process,
-    tuition_fees,
-    living_costs,
-    scholarship_info,
-    working_while_studying,
-    post_study_options,
-    featured_image_url,
-    country_flag_url,
-  } = destinationDetails;
+  // const {
+  //   title,
+  //   country_display,
+  //   overview,
+  //   eligibility_criteria,
+  //   language_requirements,
+  //   financial_requirements,
+  //   application_process,
+  //   deadline_information,
+  //   visa_process,
+  //   tuition_fees,
+  //   living_costs,
+  //   scholarship_info,
+  //   working_while_studying,
+  //   post_study_options,
+  //   featured_image_url,
+  //   country_flag_url,
+  // } = destinationDetails;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -50,7 +48,7 @@ const DestinationCountry = async ({ params }: any) => {
       </aside>
 
       {/* Main Content */}
-      <main className="lg:col-span-2">
+      {/* <main className="lg:col-span-2">
         <div className="relative w-full h-64 rounded-xl overflow-hidden mb-8">
           {featured_image_url ? (
             <Image src={featured_image_url} alt={title} fill className="object-cover" />
@@ -149,7 +147,7 @@ const DestinationCountry = async ({ params }: any) => {
             </section>
           )}
         </article>
-      </main>
+      </main> */}
     </div>
   );
 };

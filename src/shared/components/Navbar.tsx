@@ -3,10 +3,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { img } from "../constant/imgExport";
-import { FaBars, FaChevronDown, FaTimes } from "react-icons/fa";
-import { useWebsiteInfo } from "@/providers/websites.providers";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 export interface Page {
   id: number;
@@ -29,13 +27,13 @@ export interface WebsiteData {
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
-  const [mobileDropdown, setMobileDropdown] = useState<number | null>(null);
+  // const [mobileDropdown, setMobileDropdown] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState(false);
-  const pathName = usePathname();
+  // const pathName = usePathname();
   const sidebarRef = useRef<HTMLDivElement>(null);
 
-  const websiteData = useWebsiteInfo();
-  const { pages, featured_guidelines: destinationPage, loading }: any = websiteData?.websiteInfo || {};
+  // const websiteData = useWebsiteInfo();
+  // const { pages, featured_guidelines: destinationPage, loading }: any = websiteData?.websiteInfo || {};
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -64,52 +62,52 @@ const Navbar = () => {
     };
   }, []);
 
-  const generateMenuItems = () => {
-    const menuItems = [];
+  // const generateMenuItems = () => {
+  //   const menuItems = [];
 
-    if (destinationPage?.length) {
-      menuItems.push({
-        id: -1,
-        title: "Destination",
-        link: "#",
-        submenu: destinationPage.map((guideline: any) => ({
-          title: guideline.title,
-          href: `/destination/${guideline.id}`,
-        })),
-      });
-    }
+  //   if (destinationPage?.length) {
+  //     menuItems.push({
+  //       id: -1,
+  //       title: "Destination",
+  //       link: "#",
+  //       submenu: destinationPage.map((guideline: any) => ({
+  //         title: guideline.title,
+  //         href: `/destination/${guideline.id}`,
+  //       })),
+  //     });
+  //   }
 
-    if (pages?.length) {
-      [...pages]
-        .filter((page) => page.name.toLowerCase() !== "home" && page.slug.toLowerCase() !== "home")
-        .sort((a, b) => a.order - b.order)
-        .forEach((page) =>
-          menuItems.push({
-            id: page.id,
-            title: page.name,
-            link: `/${page.slug}`,
-            submenu: null,
-          }),
-        );
-    }
+  //   if (pages?.length) {
+  //     [...pages]
+  //       .filter((page) => page.name.toLowerCase() !== "home" && page.slug.toLowerCase() !== "home")
+  //       .sort((a, b) => a.order - b.order)
+  //       .forEach((page) =>
+  //         menuItems.push({
+  //           id: page.id,
+  //           title: page.name,
+  //           link: `/${page.slug}`,
+  //           submenu: null,
+  //         }),
+  //       );
+  //   }
 
-    return menuItems;
-  };
+  //   return menuItems;
+  // };
 
-  const menuItems = generateMenuItems();
+  // const menuItems = generateMenuItems();
 
-  if (loading) {
-    return (
-      <div className={`${isSticky ? "fixed top-0 left-0 right-0 z-50 bg-white shadow-lg" : "relative"} transition-all duration-300`}>
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300">
-          <div className="flex items-center justify-between h-16">
-            <div className="w-40 h-8 bg-gray-200 animate-pulse rounded-lg"></div>
-            <div className="w-32 h-10 bg-gray-200 animate-pulse rounded-lg"></div>
-          </div>
-        </nav>
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className={`${isSticky ? "fixed top-0 left-0 right-0 z-50 bg-white shadow-lg" : "relative"} transition-all duration-300`}>
+  //       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300">
+  //         <div className="flex items-center justify-between h-16">
+  //           <div className="w-40 h-8 bg-gray-200 animate-pulse rounded-lg"></div>
+  //           <div className="w-32 h-10 bg-gray-200 animate-pulse rounded-lg"></div>
+  //         </div>
+  //       </nav>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div
@@ -126,13 +124,12 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-2">
+          {/* <div className="hidden lg:flex items-center space-x-2">
             {menuItems.map((menu) => {
               const isActive = pathName === menu.link;
 
               return menu.submenu ? (
                 <div key={menu.id} className="relative group">
-                  {/* Parent Button */}
                   <button
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
             ${isActive ? "text-blue-600 bg-blue-50" : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"}
@@ -141,7 +138,6 @@ const Navbar = () => {
                     <FaChevronDown className="w-3 h-3 transition-transform group-hover:rotate-180" />
                   </button>
 
-                  {/* Dropdown */}
                   <div className="absolute left-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div className="bg-white rounded-xl shadow-lg border border-gray-100 min-w-[200px] py-2">
                       {menu.submenu.map((sub: any, idx: number) => (
@@ -166,7 +162,7 @@ const Navbar = () => {
                 </Link>
               );
             })}
-          </div>
+          </div> */}
 
           {/* Desktop CTA Button */}
           <div className="hidden lg:block">
@@ -216,7 +212,7 @@ const Navbar = () => {
 
           {/* Navigation Items */}
           <div className="flex-1 overflow-y-auto py-6">
-            <div className="space-y-2 px-4">
+            {/* <div className="space-y-2 px-4">
               {menuItems.map((menu) => {
                 const isActive = pathName === menu.link;
 
@@ -232,7 +228,6 @@ const Navbar = () => {
                       <FaChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileDropdown === menu.id ? "rotate-180" : ""}`} />
                     </button>
 
-                    {/* Collapsible Submenu */}
                     <div
                       className={`
                         overflow-hidden transition-all duration-200
@@ -264,9 +259,8 @@ const Navbar = () => {
                   </Link>
                 );
               })}
-            </div>
+            </div> */}
 
-            {/* Mobile CTA Button */}
             <div className="px-4 mt-8">
               <Link href="/appointment">
                 <button

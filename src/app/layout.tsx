@@ -11,8 +11,6 @@ import "react-loading-skeleton/dist/skeleton.css";
 import TanStackProvider from "@/providers/TanstackProvider";
 import { WebsiteInfoProvider } from "@/providers/websites.providers";
 
-import { getWebsite } from "@/actions/get/get.action";
-
 import Navbar from "@/shared/components/Navbar";
 import Footer from "@/shared/components/Footer";
 
@@ -35,12 +33,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const websiteData = await getWebsite();
+  // const websiteData = await getWebsite();
 
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <WebsiteInfoProvider initialData={websiteData }>
+        <WebsiteInfoProvider initialData={"websiteData"}>
           <TanStackProvider>
             <Navbar />
             {children}

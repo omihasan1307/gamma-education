@@ -1,29 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import Image from "next/image";
-import Link from "next/link";
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPhoneAlt } from "react-icons/fa";
-import { IoLocationSharp } from "react-icons/io5";
-import { HiOutlineMail } from "react-icons/hi";
-import { useWebsiteInfo } from "@/providers/websites.providers";
-import LoadingComponent from "./LoadingComponent";
-import { img } from "../constant/imgExport";
 
 const Footer = () => {
-  const { websiteInfo, loading }: any = useWebsiteInfo();
+  // const { websiteInfo, loading }: any = useWebsiteInfo();
 
-  if (loading) {
-    return <LoadingComponent />;
-  }
+  // if (loading) {
+  //   return <LoadingComponent />;
+  // }
 
-  const { instagram, linkedin, facebook, support_email, phone, business_address, secondary_logo } = websiteInfo?.owner_info || {};
+  // const { instagram, linkedin, facebook, support_email, phone, business_address, secondary_logo } = websiteInfo?.owner_info || {};
 
   return (
     <div>
       <footer className="bg-gradient-to-r from-basicColor to-secondaryColor text-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
-          {/* Company Info */}
-          <div>
+          {/* <div>
             <div className="flex items-center gap-2 mb-4">
               <Image src={secondary_logo || img?.Logo} alt="secondary_logo" className="w-40" width={160} height={40} />
             </div>
@@ -42,10 +33,10 @@ const Footer = () => {
                 <FaLinkedinIn />
               </Link>
             </div>
-          </div>
+          </div> */}
 
           {/* Quick Links */}
-          <div>
+          {/* <div>
             <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-gray-200 text-sm">
               <li>
@@ -69,10 +60,10 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Services */}
-          <div>
+          {/* <div>
             <h3 className="text-xl font-semibold mb-4">Our Services</h3>
             <ul className="space-y-2 text-gray-200 text-sm">
               {websiteInfo?.services?.slice(0, 5)?.map((service: any) => (
@@ -83,10 +74,10 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Contact Info */}
-          <div>
+          {/* <div>
             <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-3 text-gray-200 text-sm">
               <li className="flex items-center space-x-2">
@@ -102,7 +93,7 @@ const Footer = () => {
                 <span>{support_email}</span>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
 
         {/* Bottom Bar */}

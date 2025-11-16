@@ -5,9 +5,6 @@ export const dynamic = "force-dynamic";
 import SectionHeader from "@/shared/components/SectionHeader";
 import { Metadata } from "next";
 import { FaServicestack } from "react-icons/fa";
-import { getEventList } from "@/actions/get/get.action";
-import Image from "next/image";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Events | Gamma Education",
@@ -15,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 const EventsPage = async () => {
-  const { data: eventList } = await getEventList();
+  // const { data: eventList } = await getEventList();
 
   return (
     <main className="bg-gray-50 min-h-screen">
@@ -29,7 +26,7 @@ const EventsPage = async () => {
       </section>
 
       {/* ✅ Events Grid */}
-      <section className="max-w-screen-xl mx-auto px-6 lg:px-8 py-16">
+      {/* <section className="max-w-screen-xl mx-auto px-6 lg:px-8 py-16">
         {eventList?.length > 0 ? (
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {eventList.map((event: any) => (
@@ -37,7 +34,6 @@ const EventsPage = async () => {
                 href={`/events/${event.id}`}
                 key={event.id}
                 className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
-                {/* Image */}
                 <div className="relative w-full h-56 overflow-hidden">
                   <Image
                     src={event?.featured_image}
@@ -45,11 +41,9 @@ const EventsPage = async () => {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  {/* Category Badge */}
                   <div className="absolute top-4 left-4 bg-basicColor text-white text-xs px-3 py-1 rounded-full">{event.category?.name}</div>
                 </div>
 
-                {/* Content */}
                 <div className="p-6 flex flex-col h-full justify-between">
                   <div>
                     <h3 className="text-xl font-semibold mb-2 group-hover:text-basicColor transition-colors duration-300">{event.title}</h3>
@@ -62,7 +56,7 @@ const EventsPage = async () => {
         ) : (
           <p className="text-center text-gray-500 py-20">No events available at the moment.</p>
         )}
-      </section>
+      </section> */}
     </main>
   );
 };
