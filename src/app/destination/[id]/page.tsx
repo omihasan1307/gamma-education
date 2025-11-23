@@ -3,52 +3,39 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import DestinationSection from "./DestinationSection";
+import { getSingleDestination } from "@/actions/get/get.action";
+import Image from "next/image";
 
 const DestinationCountry = async ({ params }: any) => {
   const { id } = params;
   if (!id) return notFound();
 
-  // const { data: destinationDetails } = await getSingleDestination(parseInt(id, 10));
-  // if (!destinationDetails) return notFound();
+  const { data: destinationDetails } = await getSingleDestination(parseInt(id, 10));
+  if (!destinationDetails) return notFound();
 
-  // const {
-  //   title,
-  //   country_display,
-  //   overview,
-  //   eligibility_criteria,
-  //   language_requirements,
-  //   financial_requirements,
-  //   application_process,
-  //   deadline_information,
-  //   visa_process,
-  //   tuition_fees,
-  //   living_costs,
-  //   scholarship_info,
-  //   working_while_studying,
-  //   post_study_options,
-  //   featured_image_url,
-  //   country_flag_url,
-  // } = destinationDetails;
+  const {
+    title,
+    country_display,
+    overview,
+    eligibility_criteria,
+    language_requirements,
+    financial_requirements,
+    application_process,
+    deadline_information,
+    visa_process,
+    tuition_fees,
+    living_costs,
+    scholarship_info,
+    working_while_studying,
+    post_study_options,
+    featured_image_url,
+    country_flag_url,
+  } = destinationDetails;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
-      {/* Sidebar */}
-      <aside className="order-1 md:order-none sticky top-24 h-fit">
-        <div className="border rounded-xl shadow-sm p-5 bg-white space-y-3">
-          <h2 className="text-lg font-semibold border-b pb-2 mb-2">Jump to Section</h2>
-          <DestinationSection id={id} />
-        </div>
-        <div className="mt-6">
-          <Link href="/appointment">
-            <button className="w-full rounded-lg bg-gradient-custom px-6 py-3 text-sm sm:text-base font-semibold text-white shadow hover:opacity-90 transition">
-              Book Appointment
-            </button>
-          </Link>
-        </div>
-      </aside>
-
       {/* Main Content */}
-      {/* <main className="lg:col-span-2">
+      <main className="lg:col-span-2">
         <div className="relative w-full h-64 rounded-xl overflow-hidden mb-8">
           {featured_image_url ? (
             <Image src={featured_image_url} alt={title} fill className="object-cover" />
@@ -147,7 +134,22 @@ const DestinationCountry = async ({ params }: any) => {
             </section>
           )}
         </article>
-      </main> */}
+      </main>
+
+      {/* Sidebar */}
+      <aside className="order-1 md:order-none sticky top-24 h-fit">
+        <div className="border rounded-xl shadow-sm p-5 bg-white space-y-3">
+          <h2 className="text-lg font-semibold border-b pb-2 mb-2">Jump to Section</h2>
+          <DestinationSection id={id} />
+        </div>
+        <div className="mt-6">
+          <Link href="/appointment">
+            <button className="w-full rounded-lg bg-gradient-custom px-6 py-3 text-sm sm:text-base font-semibold text-white shadow hover:opacity-90 transition">
+              Book Appointment
+            </button>
+          </Link>
+        </div>
+      </aside>
     </div>
   );
 };

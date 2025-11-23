@@ -32,22 +32,13 @@ const HeroSection = ({ HomeSection1 }: { HomeSection1?: any }) => {
     ],
   };
 
-
   return (
     <div>
       <Slider {...settings}>
-        {HomeSection1.map((item: any) => (
-          <div key={item.id} className="relative w-full h-[700px]">
-            {/* ✅ Show full width on large screens, constrained height on mobile */}
+        {HomeSection1?.map((item: any) => (
+          <div key={item.id} className="relative w-full h-[700px] ">
             <div className="relative w-full aspect-[16/9] lg:aspect-auto lg:h-[600px] xl:h-[700px]">
-              <Image
-                src={item?.image}
-                alt={`Hero Slide ${item.id}`}
-                fill
-                priority
-                className="object-cover lg:object-contain" // ✅ object-contain for large screens
-                sizes="100vw"
-              />
+              <Image src={item?.image} alt={`Hero Slide ${item.id}`} fill priority className="object-fit" sizes="100vw" />
             </div>
           </div>
         ))}

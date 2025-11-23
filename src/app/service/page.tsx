@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const dynamic = "force-dynamic";
+import { getServiceList } from "@/actions/get/get.action";
 import SectionHeader from "@/shared/components/SectionHeader";
 import { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { FaServicestack } from "react-icons/fa";
-
+import { MdArrowOutward } from "react-icons/md";
 
 export const metadata: Metadata = {
   title: "Services | Gamma Education",
@@ -11,7 +14,9 @@ export const metadata: Metadata = {
 };
 
 const ServicesPage = async () => {
-  // const { data: serviceList } = await getServiceList();
+  const { data: serviceList } = await getServiceList();
+
+  console.log("object", serviceList);
 
   return (
     <div className="pb-20">
@@ -25,7 +30,7 @@ const ServicesPage = async () => {
       </div>
 
       {/* Services Grid */}
-      {/* <div className="max-w-screen-xl mx-auto mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3 px-4">
+      <div className="max-w-screen-xl mx-auto mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3 px-4">
         {serviceList?.map((service: any) => (
           <div key={service.id} className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
             <div className="relative w-full h-56 overflow-hidden">
@@ -50,7 +55,7 @@ const ServicesPage = async () => {
             </div>
           </div>
         ))}
-      </div> */}
+      </div>
     </div>
   );
 };

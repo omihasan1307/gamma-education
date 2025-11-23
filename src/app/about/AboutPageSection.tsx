@@ -3,28 +3,22 @@
 import TeamMemberPage from "./TeamMember";
 import { useWebsiteInfo } from "@/providers/websites.providers";
 import LoadingComponent from "@/shared/components/LoadingComponent";
-import { ENV_CONFIG } from "@/shared/constant/app.constant";
-import { useMemo } from "react";
+import AboutSection from "./About";
 
 const AboutPageSection = () => {
   const { websiteInfo, loading } = useWebsiteInfo();
 
   const aboutPage = websiteInfo?.pages?.find((page: any) => page?.slug === "about");
-  const { description , sections} = aboutPage || {};
-
-  // ✅ Memoize and replace paths deterministically
-  const fixedDescription = useMemo(() => {
-    if (!description) return "No Data";
-    return description.replace(/src="\/media/g, `src="${ENV_CONFIG.baseApi}/media`);
-  }, [description]);
+  const aboutSectionData = aboutPage?.sections?.find((page: any) => page?.section_type?.name === "Hero");
+  const teamMemberItems = aboutPage?.sections?.find((page: any) => page?.section_type?.name === "Instructors");
 
   if (loading) return <LoadingComponent />;
 
   return (
-    <div className="max-w-screen-xl mx-auto py-28">
-      <div className="mx-auto prose prose-lg" dangerouslySetInnerHTML={{ __html: fixedDescription }} />
+    <div className="max-w-screen-xl mx-auto py-28" data-aos="zoom-in">
+      <AboutSection description={aboutSectionData?.description} />
       <div>
-        <TeamMemberPage items={sections} />
+        <TeamMemberPage items={teamMemberItems} />
       </div>
     </div>
   );

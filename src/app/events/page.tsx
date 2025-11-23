@@ -2,8 +2,11 @@
 
 export const dynamic = "force-dynamic";
 
+import { getEventList } from "@/actions/get/get.action";
 import SectionHeader from "@/shared/components/SectionHeader";
 import { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { FaServicestack } from "react-icons/fa";
 
 export const metadata: Metadata = {
@@ -12,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 const EventsPage = async () => {
-  // const { data: eventList } = await getEventList();
+  const { data: eventList } = await getEventList();
 
   return (
     <main className="bg-gray-50 min-h-screen">
@@ -26,7 +29,7 @@ const EventsPage = async () => {
       </section>
 
       {/* ✅ Events Grid */}
-      {/* <section className="max-w-screen-xl mx-auto px-6 lg:px-8 py-16">
+      <section className="max-w-screen-xl mx-auto px-6 lg:px-8 py-16">
         {eventList?.length > 0 ? (
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {eventList.map((event: any) => (
@@ -56,7 +59,7 @@ const EventsPage = async () => {
         ) : (
           <p className="text-center text-gray-500 py-20">No events available at the moment.</p>
         )}
-      </section> */}
+      </section>
     </main>
   );
 };

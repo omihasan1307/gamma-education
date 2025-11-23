@@ -8,7 +8,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "api.gammaeducationsolutions.com",
+        hostname: "gm.hetdcl.com",
       },
     ],
   },

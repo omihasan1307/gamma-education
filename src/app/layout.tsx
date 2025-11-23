@@ -13,6 +13,8 @@ import { WebsiteInfoProvider } from "@/providers/websites.providers";
 
 import Navbar from "@/shared/components/Navbar";
 import Footer from "@/shared/components/Footer";
+import { getWebsite } from "@/actions/get/get.action";
+import { AOSInit } from "@/shared/shared/aos.config";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,12 +35,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const websiteData = await getWebsite();
+  const websiteData = await getWebsite();
 
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <WebsiteInfoProvider initialData={"websiteData"}>
+        <AOSInit />
+        <WebsiteInfoProvider initialData={websiteData}>
           <TanStackProvider>
             <Navbar />
             {children}

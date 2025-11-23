@@ -20,9 +20,9 @@ const ContactDetails = () => {
   return (
     <section className="py-12 px-4 sm:px-6 lg:px-8">
       {/* Heading */}
-      <div className="text-center mb-12">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">{title}</h2>
-        <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto" dangerouslySetInnerHTML={{ __html: description || "No Data" }}></p>
+      <div className="text-center  max-w-6xl mx-auto space-y-10 my-20">
+        <h2 className="text-3xl sm:text-4xl font-extrabold ">{title}</h2>
+        <p className="" dangerouslySetInnerHTML={{ __html: description || "No Data" }}></p>
       </div>
 
       {/* Contact Cards */}

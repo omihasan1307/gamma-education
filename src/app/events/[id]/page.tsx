@@ -1,19 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { getEventList, getSingleEvent } from "@/actions/get/get.action";
+import Image from "next/image";
+import Link from "next/link";
+import { FaCheckCircle, FaLongArrowAltRight } from "react-icons/fa";
+
 const EventDetails = async ({ params }: any) => {
   const { id } = params;
-  // const { data: eventList } = await getEventList();
-  // const { data: eventDetails } = await getSingleEvent(parseInt(id, 10));
+  const { data: eventList } = await getEventList();
+  const { data: eventDetails } = await getSingleEvent(parseInt(id, 10));
   console.log("Event ID:", id);
 
-  // if (!eventDetails) return <p className="text-center py-20 text-gray-500">Event not found.</p>;
+  if (!eventDetails) return <p className="text-center py-20 text-gray-500">Event not found.</p>;
 
-  // const otherEvents = eventList?.filter((e: any) => e.id !== eventDetails.id);
+  const otherEvents = eventList?.filter((e: any) => e.id !== eventDetails.id);
 
   return (
     <main className="bg-gray-50 min-h-screen">
       {/* ✅ Hero Section */}
-      {/* <section className="relative h-[400px] w-full">
+      <section className="relative h-[400px] w-full">
         <Image src={eventDetails?.featured_image} alt={eventDetails.title} fill className="object-cover brightness-75" priority />
         <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center px-6">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">{eventDetails.title}</h1>
@@ -22,10 +27,10 @@ const EventDetails = async ({ params }: any) => {
             {eventDetails.category?.name || "Event"}
           </span>
         </div>
-      </section> */}
+      </section>
 
       {/* ✅ Main Content */}
-      {/* <section className="max-w-7xl mx-auto px-6 lg:px-8 py-16 grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <section className="max-w-7xl mx-auto px-6 lg:px-8 py-16 grid grid-cols-1 lg:grid-cols-3 gap-12">
         <article className="lg:col-span-2">
           <div
             className="prose prose-gray max-w-none mb-8 prose-headings:text-gray-900 prose-h2:text-2xl prose-h3:text-xl prose-p:text-gray-700 prose-ul:list-disc prose-li:marker:text-basicColor"
@@ -75,7 +80,7 @@ const EventDetails = async ({ params }: any) => {
             </Link>
           </div>
         </aside>
-      </section> */}
+      </section>
     </main>
   );
 };
