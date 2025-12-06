@@ -107,7 +107,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/20 py-5 text-center text-gray-300 text-sm">
-          © {new Date().getFullYear()} Gama Education Consultancy. All rights reserved.
+          © {new Date().getFullYear()} Gamma Education Consultancy. All rights reserved.
         </div>
       </footer>
     </div>

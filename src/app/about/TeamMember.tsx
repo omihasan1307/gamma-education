@@ -1,41 +1,59 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from "next/image";
-import { img } from "@/shared/constant/imgExport";
+import { CiMail } from "react-icons/ci";
+import { IoCallOutline } from "react-icons/io5";
 
 const TeamMemberPage = ({ items }: { items: any }) => {
   return (
-    <div className="my-16 w-full">
-      {/* Title + Description */}
-      <div className="flex flex-col items-center text-center space-y-4 py-10">
-        <h1 className="text-4xl md:text-5xl font-bold">{items?.title}</h1>
+    <div className="w-full py-16">
+      {/* HEADING */}
+      <div className="text-center max-w-3xl mx-auto px-4 space-y-4">
+        <h2 className="text-4xl md:text-5xl ">{items?.title}</h2>
 
         <div
-          className="text-gray-600 max-w-3xl leading-relaxed"
+          className="text-gray-600 leading-relaxed"
           dangerouslySetInnerHTML={{
             __html: items?.description?.trim() === "<p>&nbsp;</p>" ? "" : items?.description,
           }}
         />
       </div>
 
-      {/* Team Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-4">
+      {/* TEAM GRID */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-12 px-6  lg:px-12">
         {items?.items?.map((member: any, index: number) => (
-          <div key={index} className="relative group rounded-xl overflow-hidden shadow-lg cursor-pointer">
+          <div
+            key={index}
+            className="group relative rounded-2xl overflow-hidden shadow-xl bg-white 
+              hover:shadow-2xl hover:-translate-y-1 transition-all duration-500">
             {/* IMAGE */}
-            <div className="w-full h-72 relative">
-              <Image
-                src={member?.image || img?.noImage}
-                alt={member?.title}
-                fill
-                className="object-cover rounded-xl group-hover:scale-110 transition-all duration-500"
-              />
+            <div className="relative w-full h-80 overflow-hidden">
+              <Image src={member?.image} alt={member?.title} fill className="object-cover group-hover:scale-110 transition-all duration-700" />
             </div>
 
-            {/* OVERLAY CONTENT */}
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-500 rounded-xl flex flex-col justify-end p-5">
-              <h2 className="text-2xl font-bold text-white">{member?.title}</h2>
-              <p className="text-sm font-semibold text-blue-200">{member?.subtitle}</p>
+            {/* CONTENT */}
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent 
+                opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-4">
+              <h2 className="text-2xl font-bold text-white drop-shadow-lg">{member?.title}</h2>
+
+              <p className="text-sm text-blue-300 font-medium">{member?.subtitle}</p>
+
+              <div className="mt-3 flex items-center justify-between gap-6 text-white text-sm">
+                <div className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full backdrop-blur-md">
+                  <CiMail className="text-lg" /> {member?.button_url}
+                </div>
+
+                <div className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full backdrop-blur-md">
+                  <IoCallOutline className="text-lg" /> {member?.button_text}
+                </div>
+              </div>
             </div>
+
+            {/* NAME BELOW IMAGE */}
+            {/* <div className="p-4 text-center bg-white">
+              <h3 className="text-lg font-semibold text-gray-800">{member?.title}</h3>
+              <p className="text-sm text-gray-500">{member?.subtitle}</p>
+            </div> */}
           </div>
         ))}
       </div>

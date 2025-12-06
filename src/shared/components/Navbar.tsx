@@ -134,7 +134,11 @@ const Navbar = () => {
                 <div key={menu.id} className="relative group">
                   <button
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
-            ${isActive ? "text-blue-600 bg-blue-50" : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"}
+            ${
+              isActive
+                ? "w-full px-6 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold text-sm shadow-lg hover:shadow-xl transition-all duration-200 hover:from-blue-700 hover:to-purple-700"
+                : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+            }
           `}>
                     {menu.title}
                     <FaChevronDown className="w-3 h-3 transition-transform group-hover:rotate-180" />
@@ -158,7 +162,11 @@ const Navbar = () => {
                   key={menu.id}
                   href={menu.link}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
-          ${isActive ? "text-blue-600 bg-blue-50" : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"}
+          ${
+            isActive
+              ? " rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold text-sm shadow-lg hover:shadow-xl transition-all duration-200 hover:from-blue-700 hover:to-purple-700"
+              : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+          }
         `}>
                   {menu.title}
                 </Link>

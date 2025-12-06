@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 
 const ServicesPage = async () => {
   const { data: serviceList } = await getServiceList();
+  // const { data: serviceCategory } = await getServiceCategory();
 
   console.log("object", serviceList);
 

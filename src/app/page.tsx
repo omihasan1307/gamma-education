@@ -3,7 +3,6 @@
 
 import BottomInvitationSection from "@/components/Home/BottomInvitationSection";
 import HeroSection from "@/components/Home/HeroSection";
-import SecondarySection from "@/components/Home/SecondarySection";
 import ServicesSection from "@/components/Home/ServicesSection";
 import TechnologySection from "@/components/Home/TechnologySection";
 import { useWebsiteInfo } from "@/providers/websites.providers";
@@ -20,15 +19,16 @@ export default function Home() {
 
   const aboutPage = websiteInfo?.pages?.find((page: any) => page?.slug === "about");
   const homePage = websiteInfo?.pages?.find((page: any) => page?.slug === "home");
-  const { sections } = aboutPage || {};
+  // const { sections } = aboutPage || {};
   const { sections: homeSection } = homePage || {};
   const heroSection = homeSection?.find((page: any) => page?.name === "main_hero");
-  const featuresSection = homeSection?.find((page: any) => page?.name === "features_section");
+  // const featuresSection = homeSection?.find((page: any) => page?.name === "features_section");
   const learningPath = homeSection?.find((page: any) => page?.name === "Learning Path");
+  const teamMemberItems = aboutPage?.sections?.find((page: any) => page?.section_type?.name === "Instructors");
 
   if (loading) return <LoadingComponent />;
 
-  console.log(aboutPage,'aboutPage');
+  console.log(websiteInfo, "websiteInfo");
 
   return (
     <div className="bg-Section overflow-hidden">
@@ -39,11 +39,11 @@ export default function Home() {
         <WhoWeAre learningPath={learningPath} />
         <BottomInvitationSection />
         <ServicesSection services={services} />
-        <SecondarySection HomeSection2={featuresSection?.items} />
+        {/* <SecondarySection HomeSection2={featuresSection?.items} /> */}
         {/* <PortfolioSection projects={projects} HomeSection6={HomeSection6} /> */}
         {/* <BlogSection blogs={blogs} HomeSection7={HomeSection7} /> */}
         <div className="max-w-screen-xl mx-auto pb-28 ">
-          <TeamMemberPage items={sections} />
+          <TeamMemberPage items={teamMemberItems} />
         </div>
       </Suspense>
     </div>

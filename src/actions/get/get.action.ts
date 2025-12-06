@@ -101,3 +101,14 @@ export const getSingleEvent = async (id: number) => {
     throw new Error(error?.message || "Failed to fetch Event");
   }
 };
+
+// category
+
+export const getServiceCategory = async () => {
+  try {
+    const response = await axiosInstance.get(`/category/`);
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error?.message || "Failed to fetch Category");
+  }
+};

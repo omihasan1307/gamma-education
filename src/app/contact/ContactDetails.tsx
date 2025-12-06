@@ -26,7 +26,7 @@ const ContactDetails = () => {
       </div>
 
       {/* Contact Cards */}
-      <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
+      <div className="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto">
         {/* Location */}
         <div className="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-xl transition-shadow">
           <div className="flex justify-center mb-4">
