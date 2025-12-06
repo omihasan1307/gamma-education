@@ -6,7 +6,7 @@ import Link from "next/link";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { MdOutlineCategory } from "react-icons/md";
 
-const ServiceDetails = async ({ params }: { params: { id: string } }) => {
+const ServiceDetails = async ({ params }: any)  => {
   const id = params.id;
 
   const { data: serviceList } = await getServiceList();
