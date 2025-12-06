@@ -6,7 +6,7 @@ import Image from "next/image";
 const ServicesSection = ({ services }: any) => {
   return (
     <>
-      <div className="max-w-screen-xl mx-auto text-center pt-28  px-2 ">
+      <div className="max-w-screen-xl mx-auto text-center py-10 lg:py-20  px-2 ">
         <div className="flex items-center justify-center flex-col space-y-5">
           <p className="text-5xl font-bold  leading-tight  lg:w-[60%]">Our Services</p>
           <p className="text-gray-500 lg:w-[50%]">Explore the range of services we offer to help you achieve your goals.</p>

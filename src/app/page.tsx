@@ -37,12 +37,13 @@ export default function Home() {
         <TechnologySection HomeSection3={featured_guidelines} />
         {/* <CollaborateSection HomeSection4={HomeSection4} /> */}
         <WhoWeAre learningPath={learningPath} />
+    
         <BottomInvitationSection />
         <ServicesSection services={services} />
         {/* <SecondarySection HomeSection2={featuresSection?.items} /> */}
         {/* <PortfolioSection projects={projects} HomeSection6={HomeSection6} /> */}
         {/* <BlogSection blogs={blogs} HomeSection7={HomeSection7} /> */}
-        <div className="max-w-screen-xl mx-auto pb-28 ">
+        <div className="max-w-screen-xl mx-auto my-8">
           <TeamMemberPage items={teamMemberItems} />
         </div>
       </Suspense>

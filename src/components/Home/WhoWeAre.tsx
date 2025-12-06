@@ -6,7 +6,7 @@ const WhoWeAre = ({ learningPath }: { learningPath: any }) => {
   if (!learningPath) return null;
 
   return (
-    <section className="container mx-auto space-y-20">
+    <section className="container max-w-screen-xl mx-auto space-y-20 py-10 ">
       {/* WHO WE ARE */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         {/* Left Text */}
@@ -28,36 +28,56 @@ const WhoWeAre = ({ learningPath }: { learningPath: any }) => {
 
       {/* HOW TO START */}
       <div>
-        <h2 className="text-3xl font-bold text-[#002D74] mb-10">How to Start</h2>
+        <h2 className="text-3xl font-bold text-[#002D74] mb-10 text-center">How to Start</h2>
 
         <div className="space-y-20">
-          {learningPath?.items?.map((item: any) => (
-            <div key={item.id} className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-              {/* Image Left / Text Right — but alternate pattern */}
-              {item.image ? (
-                <>
-                  {/* Left Image */}
-                  <div className="rounded-xl overflow-hidden shadow-md w-full h-full">
-                    <Image src={item.image} alt={item.title} width={400} height={500} className="w-full h-full object-cover" />
-                  </div>
+          {learningPath?.items?.map((item: any, index: number) => {
+            const hasImage = !!item.image;
+            const isEven = index % 2 === 0; // even index = first, third, fifth...
 
-                  {/* Right Text */}
-                  <div className="pl-8 border-l-4 border-dashed border-gray-400">
-                    <h3 className="text-xl font-bold">{item.title}</h3>
-                    <div className="mt-3 text-gray-700" dangerouslySetInnerHTML={{ __html: item.description }} />
-                  </div>
-                </>
-              ) : (
-                <>
-                  {/* If No Image, Just Text Full Width */}
+            return (
+              <div key={item.id} className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                {/* ---- CASE 1: NO IMAGE ---- */}
+                {!hasImage && (
                   <div className="col-span-2">
                     <h3 className="text-xl font-bold">{item.title}</h3>
                     <div className="mt-3 text-gray-700" dangerouslySetInnerHTML={{ __html: item.description }} />
                   </div>
-                </>
-              )}
-            </div>
-          ))}
+                )}
+
+                {/* ---- CASE 2: HAS IMAGE + ALTERNATE LAYOUT ---- */}
+                {hasImage && (
+                  <>
+                    {/* TEXT FIRST (even rows) */}
+                    {isEven ? (
+                      <>
+                        <div>
+                          <h3 className="text-xl font-bold">{item.title}</h3>
+                          <div className="mt-3 text-gray-700" dangerouslySetInnerHTML={{ __html: item.description }} />
+                        </div>
+
+                        <div className="rounded-xl overflow-hidden shadow-md w-full h-full">
+                          <Image src={item.image} alt={item.title} width={400} height={500} className="w-full h-full object-cover" />
+                        </div>
+                      </>
+                    ) : (
+                      /* IMAGE FIRST (odd rows) */
+                      <>
+                        <div className="rounded-xl overflow-hidden shadow-md w-full h-full">
+                          <Image src={item.image} alt={item.title} width={400} height={500} className="w-full h-full object-cover" />
+                        </div>
+
+                        <div>
+                          <h3 className="text-xl font-bold">{item.title}</h3>
+                          <div className="mt-3 text-gray-700" dangerouslySetInnerHTML={{ __html: item.description }} />
+                        </div>
+                      </>
+                    )}
+                  </>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,14 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
+
 import Image from "next/image";
 import { CiMail } from "react-icons/ci";
 import { IoCallOutline } from "react-icons/io5";
+import { usePathname } from "next/navigation";
 
 const TeamMemberPage = ({ items }: { items: any }) => {
+  const pathname = usePathname();
+
+  // If route is homepage "/", show only first 3 members
+  const teamMembers = pathname === "/" ? items?.items?.slice(0, 3) : items?.items;
+
   return (
-    <div className="w-full py-16">
+    <div className="w-full py-8">
       {/* HEADING */}
       <div className="text-center max-w-3xl mx-auto px-4 space-y-4">
-        <h2 className="text-4xl md:text-5xl ">{items?.title}</h2>
+        <h2 className="text-5xl font-bold  ">{items?.title}</h2>
 
         <div
           className="text-gray-600 leading-relaxed"
@@ -19,8 +27,8 @@ const TeamMemberPage = ({ items }: { items: any }) => {
       </div>
 
       {/* TEAM GRID */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-12 px-6  lg:px-12">
-        {items?.items?.map((member: any, index: number) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-12 px-6 lg:px-12">
+        {teamMembers?.map((member: any, index: number) => (
           <div
             key={index}
             className="group relative rounded-2xl overflow-hidden shadow-xl bg-white 
@@ -48,12 +56,6 @@ const TeamMemberPage = ({ items }: { items: any }) => {
                 </div>
               </div>
             </div>
-
-            {/* NAME BELOW IMAGE */}
-            {/* <div className="p-4 text-center bg-white">
-              <h3 className="text-lg font-semibold text-gray-800">{member?.title}</h3>
-              <p className="text-sm text-gray-500">{member?.subtitle}</p>
-            </div> */}
           </div>
         ))}
       </div>
