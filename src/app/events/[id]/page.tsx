@@ -9,7 +9,6 @@ const EventDetails = async ({ params }: any) => {
   const { id } = params;
   const { data: eventList } = await getEventList();
   const { data: eventDetails } = await getSingleEvent(parseInt(id, 10));
-  console.log("Event ID:", id);
 
   if (!eventDetails) return <p className="text-center py-20 text-gray-500">Event not found.</p>;
 

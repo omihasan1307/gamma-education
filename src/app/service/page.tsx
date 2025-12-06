@@ -17,7 +17,7 @@ const ServicesPage = async () => {
   const { data: serviceList } = await getServiceList();
   // const { data: serviceCategory } = await getServiceCategory();
 
-  console.log("object", serviceList);
+  // console.log("object", serviceList);
 
   return (
     <div className="pb-20">

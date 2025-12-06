@@ -28,7 +28,7 @@ export default function Home() {
 
   if (loading) return <LoadingComponent />;
 
-  console.log(websiteInfo, "websiteInfo");
+  // console.log(websiteInfo, "websiteInfo");
 
   return (
     <div className="bg-Section overflow-hidden">
