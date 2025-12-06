@@ -38,7 +38,7 @@ const WhoWeAre = ({ learningPath }: { learningPath: any }) => {
                 <>
                   {/* Left Image */}
                   <div className="rounded-xl overflow-hidden shadow-md w-full h-full">
-                    <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                    <Image src={item.image} alt={item.title} className="w-full h-full object-cover" />
                   </div>
 
                   {/* Right Text */}
