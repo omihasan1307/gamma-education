@@ -5,10 +5,17 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "images.unsplash.com",
+        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "gm.hetdcl.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "api.gammaeducationsolutions.com",
+        pathname: "/**",
       },
     ],
   },
