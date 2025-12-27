@@ -1,88 +1,52 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+import { img } from "@/shared/constant/imgExport";
 import Image from "next/image";
 import Slider from "react-slick";
 
 const HeroSection = ({ HomeSection1 }: { HomeSection1?: any }) => {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 4000,
-    arrows: false,
+    arrows: true,
     fade: true,
     responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-          fade: true,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          fade: false,
-        },
-      },
+      { breakpoint: 1024, settings: { fade: true } },
+      { breakpoint: 768, settings: { fade: false } },
     ],
   };
 
   return (
-    <div>
-      <Slider {...settings}>
-        {HomeSection1?.map((item: any) => (
-          <div key={item.id} className="relative w-full h-[700px] ">
-            <div className="relative w-full aspect-[16/9] lg:aspect-auto lg:h-[600px] xl:h-[700px]">
-              <Image src={item?.image} alt={`Hero Slide ${item.id}`} fill priority className="object-fit" sizes="100vw" />
-            </div>
+    <div className="px-2 max-w-screen-xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-3">
+        {/* Main Slider */}
+        <div className="lg:col-span-3 w-full">
+          <Slider {...settings}>
+            {HomeSection1?.map((item: any) => (
+              <div key={item.id} className="relative w-full min-h-[250px] sm:min-h-[350px] md:min-h-[450px] lg:min-h-[600px]">
+                <Image src={item?.image} alt={`Hero Slide ${item.id}`} fill priority className="object-cover rounded-md" sizes="100vw" />
+              </div>
+            ))}
+          </Slider>
+        </div>
+
+        {/* Right Side Images */}
+        <div className="lg:col-span-2 flex flex-col gap-3">
+          <div className="relative w-full min-h-[150px] sm:min-h-[200px] md:min-h-[250px] lg:min-h-[295px]">
+            <Image src={img.study} alt="Study Banner" fill className="object-cover rounded-md" />
           </div>
-        ))}
-      </Slider>
+          <div className="relative w-full min-h-[150px] sm:min-h-[200px] md:min-h-[250px] lg:min-h-[295px]">
+            <Image src={img.heroImg} alt="Secondary Banner" fill className="object-cover rounded-md" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default HeroSection;
-
-{
-  /* {HomeSection3?.items?.map((item: any, index: number) => (
-            <Link href={`/destination/usa`} key={index} className="p-2 ">
-              <div className="rounded-md py-6 ">
-                {item?.image ? (
-                  <Image
-                    src={item?.image || img.heroImg}
-                    alt={item?.title || "Technology"}
-                    width={200}
-                    height={200}
-                    className="mx-auto h-[200px] w-[200px] hover:scale-105 duration-300 "
-                  />
-                ) : (
-                  <div
-                    className="mx-auto h-[200px] w-[200px] flex items-center justify-center "
-                    dangerouslySetInnerHTML={{ __html: item?.icon }}></div>
-                )}
-                <h3 className="text-xl font-bold mt-4">{item.title}</h3>
-              </div>
-            </Link>
-          ))} */
-}
-{
-  /* <div className="max-w-screen-xl mx-auto py-28 px-1 text-center">
-        <div className="flex items-center justify-center flex-col space-y-5">
-          <p className="text-5xl font-bold  leading-tight  lg:w-[40%]">{title || <Skeleton />}</p>
-          <div className="text-gray-500 lg:w-[50%]" dangerouslySetInnerHTML={{ __html: description }}></div>
-        </div>
-
-        <Link
-          href={"/appointment"}
-          className="md:w-auto mt-6 inline-flex items-center justify-center py-3 px-7 text-base font-semibold text-center text-white rounded-full bg-gradient-custom shadow-xs opacity-85 hover:opacity-100 transition-all duration-500">
-          Book Appointment
-          <MdOutlineArrowForwardIos />
-        </Link>
-      </div> */
-}

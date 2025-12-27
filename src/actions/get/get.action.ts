@@ -49,6 +49,28 @@ export const getSingleService = async (id: number) => {
 };
 
 // -------------------------
+// BLOGS
+// -------------------------
+
+export const getBlogList = async (search?: string) => {
+  try {
+    const response = await axiosInstance.get(`/blogs/blog/?q=${search || ""}`);
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error?.message || "Failed to fetch Blogs");
+  }
+};
+
+export const getSingleBlog = async (id: number) => {
+  try {
+    const response = await axiosInstance.get(`/blogs/blog/${id}/`);
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error?.message || "Failed to fetch Blog");
+  }
+};
+
+// -------------------------
 // DESTINATION
 // -------------------------
 

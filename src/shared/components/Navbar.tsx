@@ -137,7 +137,7 @@ const Navbar = () => {
             ${
               isActive
                 ? "w-full px-6 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold text-sm shadow-lg hover:shadow-xl transition-all duration-200 hover:from-blue-700 hover:to-purple-700"
-                : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                : "text-gray-700 hover:text-blue-600 hover:bg-gray-50 text-lg font-semibold"
             }
           `}>
                     {menu.title}
@@ -165,7 +165,7 @@ const Navbar = () => {
           ${
             isActive
               ? " rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold text-sm shadow-lg hover:shadow-xl transition-all duration-200 hover:from-blue-700 hover:to-purple-700"
-              : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+              : "text-gray-700 hover:text-blue-600 hover:bg-gray-50 text-lg font-semibold"
           }
         `}>
                   {menu.title}

@@ -25,7 +25,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-6 sm:px-10 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <Image src={secondary_logo || img?.Logo} alt="secondary_logo" className="w-40" width={160} height={40} />
+              <Image src={secondary_logo || img?.GammaImage} alt="secondary_logo" className="w-40" width={160} height={40} />
             </div>
 
             <p className="text-gray-200 text-sm leading-relaxed">
@@ -59,7 +59,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-white transition">
+                <Link href="/service" className="hover:text-white transition">
                   Services
                 </Link>
               </li>
@@ -77,7 +77,7 @@ const Footer = () => {
             <ul className="space-y-2 text-gray-200 text-sm">
               {websiteInfo?.services?.slice(0, 5)?.map((service: any) => (
                 <li key={service.id}>
-                  <Link href={`/services/${service.id}`} className="hover:text-white transition">
+                  <Link href={`/service/${service.id}`} className="hover:text-white transition">
                     {service.title}
                   </Link>
                 </li>
