@@ -29,10 +29,23 @@ export const getSingleProject = async (id: number) => {
 // -------------------------
 // SERVICES
 // -------------------------
-
-export const getServiceList = async () => {
+export const getCategoriesList = async () => {
   try {
-    const response = await axiosInstance.get(`/services/service/`);
+    const response = await axiosInstance.get(`/base/categories/`);
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error?.message || "Failed to fetch Categories");
+  }
+};
+export const getServiceList = async (search = "", category?: string) => {
+  try {
+    const params = new URLSearchParams();
+
+    if (search) params.append("search", search);
+    if (category) params.append("category", category);
+
+    const response = await axiosInstance.get(`/services/service/?${params.toString()}`);
+
     return response.data;
   } catch (error: any) {
     throw new Error(error?.message || "Failed to fetch Services");
@@ -54,7 +67,7 @@ export const getSingleService = async (id: number) => {
 
 export const getBlogList = async (search?: string) => {
   try {
-    const response = await axiosInstance.get(`/blogs/blog/?q=${search || ""}`);
+    const response = await axiosInstance.get(`/blogs/blog/?search=${search || ""}`);
     return response.data;
   } catch (error: any) {
     throw new Error(error?.message || "Failed to fetch Blogs");
@@ -106,14 +119,26 @@ export const getWebsite = async () => {
 // EVENTS
 // -------------------------
 
-export const getEventList = async () => {
+export const getEventList = async (
+  search = "",
+  category = ""
+) => {
   try {
-    const response = await axiosInstance.get(`/projects/project/`);
+    const params = new URLSearchParams();
+
+    if (search) params.append("search", search);
+    if (category) params.append("category", category);
+
+    const response = await axiosInstance.get(
+      `/projects/project/?${params.toString()}`
+    );
+
     return response.data;
   } catch (error: any) {
     throw new Error(error?.message || "Failed to fetch Events");
   }
 };
+
 
 export const getSingleEvent = async (id: number) => {
   try {
@@ -124,13 +149,3 @@ export const getSingleEvent = async (id: number) => {
   }
 };
 
-// category
-
-// export const getServiceCategory = async () => {
-//   try {
-//     const response = await axiosInstance.get(`/category/`);
-//     return response.data;
-//   } catch (error: any) {
-//     throw new Error(error?.message || "Failed to fetch Category");
-//   }
-// };

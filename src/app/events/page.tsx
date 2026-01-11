@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 export const dynamic = "force-dynamic";
 
-import { getEventList } from "@/actions/get/get.action";
+import { getCategoriesList, getEventList } from "@/actions/get/get.action";
+import EventFilter from "@/components/EvenetSearch";
 import SectionHeader from "@/shared/components/SectionHeader";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -14,12 +14,16 @@ export const metadata: Metadata = {
   description: "Explore the latest seminars, workshops, and fairs hosted by Gamma Education.",
 };
 
-const EventsPage = async () => {
-  const { data: eventList } = await getEventList();
+const EventsPage = async ({ searchParams }: any) => {
+  const search = searchParams?.q || "";
+  const category = searchParams?.category || "";
+
+  const { data: categoriesList } = await getCategoriesList();
+  const { data: eventList } = await getEventList(search, category);
 
   return (
     <main className="bg-gray-50 min-h-screen">
-      {/* ✅ Header Section */}
+      {/* Header */}
       <section className="text-center bg-gradient-to-b from-white to-gray-100">
         <SectionHeader
           text="Our Events"
@@ -28,7 +32,10 @@ const EventsPage = async () => {
         />
       </section>
 
-      {/* ✅ Events Grid */}
+      {/* Search + Category */}
+      <EventFilter categories={categoriesList} />
+
+      {/* Events Grid */}
       <section className="max-w-screen-xl mx-auto px-6 lg:px-8 py-16">
         {eventList?.length > 0 ? (
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
@@ -44,20 +51,20 @@ const EventsPage = async () => {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute top-4 left-4 bg-basicColor text-white text-xs px-3 py-1 rounded-full">{event.category?.name}</div>
+                  {event.category && (
+                    <div className="absolute top-4 left-4 bg-basicColor text-white text-xs px-3 py-1 rounded-full">{event.category.name}</div>
+                  )}
                 </div>
 
-                <div className="p-6 flex flex-col h-full justify-between">
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-basicColor transition-colors duration-300">{event.title}</h3>
-                    <p className="text-gray-600 text-sm mb-6">{event.subtitle}</p>
-                  </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2 group-hover:text-basicColor transition">{event.title}</h3>
+                  <p className="text-gray-600 text-sm">{event.subtitle}</p>
                 </div>
               </Link>
             ))}
           </div>
         ) : (
-          <p className="text-center text-gray-500 py-20">No events available at the moment.</p>
+          <p className="text-center text-gray-500 py-20">No events found</p>
         )}
       </section>
     </main>

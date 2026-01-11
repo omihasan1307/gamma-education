@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const dynamic = "force-dynamic";
 import { getBlogList } from "@/actions/get/get.action";
+import BlogSearch from "@/components/BlogSearch";
 import SectionHeader from "@/shared/components/SectionHeader";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { MdArrowOutward, MdSearch } from "react-icons/md";
+import { MdArrowOutward } from "react-icons/md";
 
 // metadata
 export const metadata: Metadata = {
@@ -25,20 +26,9 @@ const BlogPage = async ({ searchParams }: any) => {
       </div>
 
       {/* Search Bar */}
-      <form action="" method="GET" className="max-w-xl mx-auto mt-10 px-4">
-        <div className="relative">
-          <input
-            type="text"
-            name="q"
-            defaultValue={search}
-            placeholder="Search blogs..."
-            className="w-full rounded-full border border-gray-300 focus:border-basicColor focus:ring-basicColor py-3 pl-5 pr-12 outline-none transition"
-          />
-          <button className="absolute right-3 top-1/2 -translate-y-1/2 text-basicColor hover:opacity-75">
-            <MdSearch size={22} />
-          </button>
-        </div>
-      </form>
+      <div className="max-w-xl mx-auto mt-10 px-4">
+        <BlogSearch />
+      </div>
 
       {/* Blog Grid */}
       <div className="max-w-screen-xl mx-auto mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 px-4">
