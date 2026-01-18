@@ -121,7 +121,7 @@ const Navbar = () => {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 transition-all duration-300">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center flex-shrink-0" onClick={() => setIsSidebarOpen(false)}>
+          <Link href="/" className="flex items-center flex-shrink-0 mt-2" onClick={() => setIsSidebarOpen(false)}>
             <Image src={img?.Logo} alt="Logo" className="w-40 lg:w-44 h-auto transition-all duration-300" priority />
           </Link>
 

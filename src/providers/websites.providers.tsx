@@ -2,61 +2,61 @@
 "use client";
 
 import { ENV_CONFIG } from "@/shared/constant/app.constant";
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode, useRef } from "react";
 
-// ✅ Define Context Type
 interface WebsiteInfoContextType {
   websiteInfo: any;
   loading: boolean;
   setWebsiteInfo: React.Dispatch<React.SetStateAction<any>>;
 }
 
-// ✅ Create Context
 const WebsiteInfoContext = createContext<WebsiteInfoContextType>({
   websiteInfo: null,
   loading: true,
   setWebsiteInfo: () => {},
 });
 
-// ✅ Provider
 export const WebsiteInfoProvider = ({ children, initialData }: { children: ReactNode; initialData: any }) => {
   const [websiteInfo, setWebsiteInfo] = useState(initialData?.data || null);
   const [loading, setLoading] = useState(!initialData);
 
-  // ✅ Fetch website info directly on the client
+  // 🔐 store last data snapshot
+  const lastDataRef = useRef(JSON.stringify(initialData?.data || null));
+
   const fetchWebsiteInfo = async () => {
     try {
-      setLoading(true);
       const res = await fetch(`${ENV_CONFIG.baseApi}/base/website-data`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
-        cache: "no-store", // ensures always fresh data
+        cache: "no-store",
       });
-      if (!res.ok) throw new Error(`Failed to fetch website data: ${res.status}`);
+
+      if (!res.ok) return;
+
       const data = await res.json();
-      setWebsiteInfo(data?.data || null);
+      const newData = data?.data || null;
+      const newDataString = JSON.stringify(newData);
+
+      // ✅ update ONLY if data changed
+      if (newDataString !== lastDataRef.current) {
+        lastDataRef.current = newDataString;
+        setWebsiteInfo(newData);
+      }
     } catch (error) {
-      console.error("Error fetching website data:", error);
+      console.error("Website info fetch error:", error);
     } finally {
       setLoading(false);
     }
   };
 
-  // ✅ Fetch on mount + periodically refresh every 60s
+  // ✅ Fetch ONLY ONCE
   useEffect(() => {
     fetchWebsiteInfo();
-
-    const interval = setInterval(() => {
-      fetchWebsiteInfo();
-    }, 60 * 1000); // auto refresh every 1 minute
-
-    return () => clearInterval(interval);
   }, []);
 
   return <WebsiteInfoContext.Provider value={{ websiteInfo, loading, setWebsiteInfo }}>{children}</WebsiteInfoContext.Provider>;
 };
 
-// ✅ Custom Hook
 export const useWebsiteInfo = () => useContext(WebsiteInfoContext);
 
 // /* eslint-disable @typescript-eslint/no-explicit-any */

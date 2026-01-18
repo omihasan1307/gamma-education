@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const ENV_CONFIG = {
-  baseApi: process.env.NEXT_PUBLIC_BASE_API || "",
+  baseApi: "https://gm.hetdcl.com/api/v1.0",
 };
 
 // Safe axios instance

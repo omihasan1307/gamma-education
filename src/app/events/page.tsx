@@ -4,6 +4,7 @@ export const dynamic = "force-dynamic";
 import { getCategoriesList, getEventList } from "@/actions/get/get.action";
 import EventFilter from "@/components/EvenetSearch";
 import SectionHeader from "@/shared/components/SectionHeader";
+import { img } from "@/shared/constant/imgExport";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -46,7 +47,7 @@ const EventsPage = async ({ searchParams }: any) => {
                 className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
                 <div className="relative w-full h-56 overflow-hidden">
                   <Image
-                    src={event?.featured_image}
+                    src={event?.featured_image || img.study}
                     alt={event?.title}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
