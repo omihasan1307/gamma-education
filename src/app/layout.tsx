@@ -15,6 +15,7 @@ import Navbar from "@/shared/components/Navbar";
 import Footer from "@/shared/components/Footer";
 import { getWebsite } from "@/actions/get/get.action";
 import { AOSInit } from "@/shared/shared/aos.config";
+import PopupAd from "@/components/Home/PopupAd";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -41,6 +42,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <AOSInit />
+        <PopupAd advertisements={websiteData?.data?.advertisments} />
         <WebsiteInfoProvider initialData={websiteData}>
           <TanStackProvider>
             <Navbar />

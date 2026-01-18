@@ -15,7 +15,8 @@ import WhoWeAre from "@/components/Home/WhoWeAre";
 export default function Home() {
   const { websiteInfo, loading } = useWebsiteInfo();
 
-  const { services, featured_guidelines } = websiteInfo || {};
+  const { services, featured_guidelines, advertisments } = websiteInfo || {};
+
 
   const aboutPage = websiteInfo?.pages?.find((page: any) => page?.slug === "about");
   const homePage = websiteInfo?.pages?.find((page: any) => page?.slug === "home");
@@ -33,11 +34,11 @@ export default function Home() {
   return (
     <div className="bg-Section overflow-hidden">
       <Suspense fallback={<BeatLoader color="#0291FA" loading={true} size={5} speedMultiplier={2} className="max-w-screen-2xl mx-auto" />}>
-        <HeroSection HomeSection1={heroSection?.items} />
+        <HeroSection HomeSection1={heroSection?.items} advertisments={advertisments} />
         <TechnologySection HomeSection3={featured_guidelines} />
         {/* <CollaborateSection HomeSection4={HomeSection4} /> */}
         <WhoWeAre learningPath={learningPath} />
-    
+
         <BottomInvitationSection />
         <ServicesSection services={services} />
         {/* <SecondarySection HomeSection2={featuresSection?.items} /> */}
