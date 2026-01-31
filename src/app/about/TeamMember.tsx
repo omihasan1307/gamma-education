@@ -35,7 +35,13 @@ const TeamMemberPage = ({ items }: { items: any }) => {
               hover:shadow-2xl hover:-translate-y-1 transition-all duration-500">
             {/* IMAGE */}
             <div className="relative w-full h-80 overflow-hidden">
-              <Image src={member?.image} alt={member?.title} fill className="object-cover group-hover:scale-110 transition-all duration-700" />
+              <Image
+                src={member?.image}
+                alt={member?.title}
+                width={600}
+                height={400}
+                className="object-cover group-hover:scale-110 transition-all duration-700"
+              />
             </div>
 
             {/* CONTENT */}
