@@ -87,6 +87,20 @@ export const getSingleBlog = async (id: number) => {
 // DESTINATION
 // -------------------------
 
+export const getDestination = async (params: { q?: string; country?: string; study_level?: string }) => {
+  try {
+    const query = new URLSearchParams();
+    if (params.q) query.set("search", params.q);
+    if (params.country) query.set("country", params.country);
+    if (params.study_level) query.set("study_level", params.study_level);
+
+    const response = await axiosInstance.get(`/base/guidelines/?${query.toString()}`);
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error?.message || "Failed to fetch Destination");
+  }
+};
+
 export const getSingleDestination = async (id: number) => {
   try {
     const response = await axiosInstance.get(`/base/guidelines/${id}/`);
@@ -119,26 +133,20 @@ export const getWebsite = async () => {
 // EVENTS
 // -------------------------
 
-export const getEventList = async (
-  search = "",
-  category = ""
-) => {
+export const getEventList = async (search = "", category = "") => {
   try {
     const params = new URLSearchParams();
 
     if (search) params.append("search", search);
     if (category) params.append("category", category);
 
-    const response = await axiosInstance.get(
-      `/projects/project/?${params.toString()}`
-    );
+    const response = await axiosInstance.get(`/projects/project/?${params.toString()}`);
 
     return response.data;
   } catch (error: any) {
     throw new Error(error?.message || "Failed to fetch Events");
   }
 };
-
 
 export const getSingleEvent = async (id: number) => {
   try {
@@ -148,4 +156,3 @@ export const getSingleEvent = async (id: number) => {
     throw new Error(error?.message || "Failed to fetch Event");
   }
 };
-

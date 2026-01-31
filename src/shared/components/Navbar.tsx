@@ -35,7 +35,7 @@ const Navbar = () => {
   const sidebarRef = useRef<HTMLDivElement>(null);
 
   const websiteData = useWebsiteInfo();
-  const { pages, featured_guidelines: destinationPage, loading }: any = websiteData?.websiteInfo || {};
+  const { pages, loading }: any = websiteData?.websiteInfo || {};
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -64,20 +64,48 @@ const Navbar = () => {
     };
   }, []);
 
-  const generateMenuItems = () => {
-    const menuItems = [];
+  // const generateMenuItems = () => {
+  //   const menuItems = [];
 
-    if (destinationPage?.length) {
-      menuItems.push({
-        id: -1,
-        title: "Destination",
-        link: "#",
-        submenu: destinationPage.map((guideline: any) => ({
-          title: guideline.title,
-          href: `/destination/${guideline.id}`,
-        })),
-      });
-    }
+  //   if (destinationPage?.length) {
+  //     menuItems.push({
+  //       id: -1,
+  //       title: "Destination",
+  //       link: "#",
+  //       submenu: destinationPage.map((guideline: any) => ({
+  //         title: guideline.title,
+  //         href: `/destination/${guideline.id}`,
+  //       })),
+  //     });
+  //   }
+
+  //   if (pages?.length) {
+  //     [...pages]
+  //       .filter((page) => page.name.toLowerCase() !== "home" && page.slug.toLowerCase() !== "home")
+  //       .sort((a, b) => a.order - b.order)
+  //       .forEach((page) =>
+  //         menuItems.push({
+  //           id: page.id,
+  //           title: page.name,
+  //           link: `/${page.slug}`,
+  //           submenu: null,
+  //         }),
+  //       );
+  //   }
+
+  //   return menuItems;
+  // };
+
+  const generateMenuItems = () => {
+    const menuItems: any[] = [];
+
+    // ✅ Fixed Destination page (NO dropdown)
+    menuItems.push({
+      id: -1,
+      title: "Destination",
+      link: "/destination",
+      submenu: null,
+    });
 
     if (pages?.length) {
       [...pages]
@@ -114,10 +142,10 @@ const Navbar = () => {
   return (
     <div
       className={`
-        ${isSticky ? "fixed top-0 left-0 right-0 z-50 backdrop-blur-md" : "relative"} 
-        transition-all duration-300
-        ${scrolled ? "bg-white/95 shadow-lg border-b border-gray-100" : "bg-white"}
-      `}>
+    ${isSticky ? "fixed top-0 left-0 right-0 z-50" : "relative"}
+    transition-all duration-300
+    ${isSidebarOpen ? "bg-white" : scrolled ? "bg-white shadow-lg border-b border-gray-100" : "bg-white"}
+  `}>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 transition-all duration-300">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
@@ -134,11 +162,11 @@ const Navbar = () => {
                 <div key={menu.id} className="relative group">
                   <button
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
-            ${
-              isActive
-                ? "w-full px-6 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold text-sm shadow-lg hover:shadow-xl transition-all duration-200 hover:from-blue-700 hover:to-purple-700"
-                : "text-gray-700 hover:text-blue-600 hover:bg-gray-50 text-lg font-semibold"
-            }
+                              ${
+                                isActive
+                                  ? "w-full px-6 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold text-sm shadow-lg hover:shadow-xl transition-all duration-200 hover:from-blue-700 hover:to-purple-700"
+                                  : "text-gray-700 hover:text-blue-600 hover:bg-gray-50 text-lg font-semibold"
+                              }
           `}>
                     {menu.title}
                     <FaChevronDown className="w-3 h-3 transition-transform group-hover:rotate-180" />
@@ -195,7 +223,7 @@ const Navbar = () => {
       {/* Mobile Sidebar */}
       <div
         className={`
-          fixed inset-0 z-50 lg:hidden transition-all duration-300
+          fixed inset-0 z-50 lg:hidden transition-all duration-300 
           ${isSidebarOpen ? "opacity-100 visible" : "opacity-0 invisible"}
         `}>
         {/* Backdrop */}
@@ -205,7 +233,7 @@ const Navbar = () => {
         <div
           ref={sidebarRef}
           className={`
-            absolute top-0 right-0 w-80 sm:w-96 h-full bg-white shadow-xl transition-transform duration-300 ease-out
+            absolute top-0 right-0 w-80 h-full bg-white shadow-xl transition-transform duration-300 ease-out
             ${isSidebarOpen ? "translate-x-0" : "translate-x-full"}
           `}>
           {/* Header */}
